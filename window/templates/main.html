@@ -1,0 +1,49 @@
+<div class="container">
+
+    <h1>Automated Fuzzing</h1>
+    
+    <div class="input-group">
+        <p>Enter the URL you wish to Fuzz</p>
+        <input type="text" class="form-control" placeholder="URL to Fuzz" ng-model="urlInput"/>
+        <button type="button" class="btn btn-default navbar-btn" ng-click="getParamsFromUrl(urlInput)">Get Params</button>
+        
+    </div>
+
+    <div>
+        <h3>Parameters to Fuzz</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="param in paramList">
+                    <td>{{ param.key }}</td>
+                    <td><input type="text" ng-model="param.value" class="form-control"/></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-default" ng-click="addToList(paramList)">Add URL</button>
+        <button type="button" class="btn btn-default" ng-click="">Add New Parameter</button>
+    </div>
+
+    <div>
+        <h3>URLs in Batch</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="url in urlList track by $index">
+                    <td>{{ url }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-default">Start Fuzzing</button>
+    </div>
+
+</div>

@@ -1,1 +1,1 @@
-var app = angular.module('autoFuzzer', []);
+var app = angular.module('autoFuzzer', ["ngRoute"]);
