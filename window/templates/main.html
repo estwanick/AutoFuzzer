@@ -6,7 +6,6 @@
         <p>Enter the URL you wish to Fuzz</p>
         <input type="text" class="form-control" placeholder="URL to Fuzz" ng-model="urlInput"/>
         <button type="button" class="btn btn-default navbar-btn" ng-click="getParamsFromUrl(urlInput)">Get Params</button>
-        
     </div>
 
     <div>
@@ -36,14 +35,24 @@
                 <tr>
                     <th>URL</th>
                 </tr>
+                <tr>
+                    <th>Action</th>
+                </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="url in urlList track by $index">
-                    <td>{{ url }}</td>
+                    <td>
+                        {{ url }}
+                    </td>
+                    <td>
+                        <a>Remove</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
-        <button type="button" class="btn btn-default">Start Fuzzing</button>
+        <p>Delay</p>
+        <input type="number" class="form-control" step="100" placeholder="1000" value="1000" />
+        <button type="button" class="btn btn-default" ng-click="startFuzzing()">Start Fuzzing</button>
     </div>
 
 </div>

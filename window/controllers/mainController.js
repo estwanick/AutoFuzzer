@@ -1,7 +1,11 @@
-app.controller('mainController', function($scope) {
+app.controller('mainController', function($scope, $location, urlList) {
 
     $scope.urlList = [];
     var originalURL = "";
+
+    $scope.startFuzzing = function(resultUrl){
+        $location.path("results");
+    };
 
     $scope.getParamsFromUrl = function(urlString) {  
         originalURL = new URL(urlString);
@@ -15,11 +19,11 @@ app.controller('mainController', function($scope) {
             }
             $scope.paramList.push(oParam);
         }
-        console.log($scope.paramList);
+        //console.log($scope.paramList);
     };
 
     $scope.addToList = function(inputParams){
-        console.log(inputParams);
+        //console.log(inputParams);
         var paramString = "";
         var oldURL = originalURL.toString();
         var newURL = "";
@@ -33,11 +37,12 @@ app.controller('mainController', function($scope) {
                 paramString = paramString + "&" + param.key + "=" + param.value
             }
         }
-        console.log(paramString);
+        //console.log(paramString);
         newURL = oldURL.substring(0, oldURL.indexOf("?")) + paramString;
-        console.log(newURL);
+        //console.log(newURL);
         $scope.urlList.push(newURL);
-        console.log($scope.urlList);
+        urlList.setURLs($scope.urlList);
+        //console.log($scope.urlList);
     };
 });
 
