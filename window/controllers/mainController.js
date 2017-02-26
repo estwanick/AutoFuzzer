@@ -1,9 +1,12 @@
 app.controller('mainController', function($scope, $location, urlList) {
-
-    $scope.urlList = [];
+    $scope.delay = 1000;
+    $scope.urlInput = "https://www.helloworld.com/?hello=world&bye=hi&job=yes";
+    $scope.urlList = urlList.getURLs();;
     var originalURL = "";
 
-    $scope.startFuzzing = function(resultUrl){
+    $scope.startFuzzing = function(delay){
+        //urlList.setOriginalURL();
+        urlList.setDelay(delay);
         $location.path("results");
     };
 

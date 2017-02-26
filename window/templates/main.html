@@ -34,8 +34,6 @@
             <thead>
                 <tr>
                     <th>URL</th>
-                </tr>
-                <tr>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -51,8 +49,8 @@
             </tbody>
         </table>
         <p>Delay</p>
-        <input type="number" class="form-control" step="100" placeholder="1000" value="1000" />
-        <button type="button" class="btn btn-default" ng-click="startFuzzing()">Start Fuzzing</button>
+        <input type="number" class="form-control" step="1000" ng-model="delay"/>
+        <button type="button" class="btn btn-default" ng-click="startFuzzing(delay)">Start Fuzzing</button>
     </div>
 
 </div>

@@ -4,6 +4,7 @@
     
     <div>
         <h3>Parameters to Fuzz</h3>
+        <button type="button" class="btn btn-default" ng-click="add()">Add URL</button>
         <table class="table">
             <thead>
                 <tr>
@@ -12,9 +13,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>URL</td>
-                    <td>400</td>
+                <tr ng-repeat="request in requestList track by $index">
+                    <td>{{ request }}</td>
+                    <td>200</td>
                 </tr>
             </tbody>
         </table>
