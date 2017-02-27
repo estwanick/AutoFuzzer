@@ -1,64 +1,45 @@
-app.controller('resultsController', function ($scope, $http, $location, $timeout, 
-                                                urlList, resultsList) {
+app.controller('resultsController', function ($scope, $http, $location, $timeout,
+    urlList) {
     //Zero out the results
-    resultsList.setResults([]);
     $scope.requestList = [];
     console.log("Results Controller");
     console.log(urlList.getURLs());
 
     var reqURLs = urlList.getURLs();
-    var numURLs = urlList.getURLs().length;
     var delay = urlList.getDelay();
-    var urlCounter = 0;
-
-    console.log(numURLs);
-    console.log(delay);
-
-    function delayedRequest() {
+ 
+    function delayedRequest(counter) {
         $timeout(function () {
-            //console.log(urlCounter);
-            console.log(reqURLs[urlCounter]);
-            //initiation http delayedRequest
             //If request is successfull increment and continue
             //If request fails try again
-            $http.get(reqURLs[urlCounter])
-                .then(function(response) {
-                    var requestObj = {};
-                    requestObj.url = reqURLs[urlCounter];
-                    requestObj.status = response.status;
-                    requestObj.text = response.statusText;
-                    console.log(response);  
-                    resultsList.appendResult(requestObj);
-                    $scope.requestList = resultsList.getResults();
-                    urlCounter++;
-                    if (urlCounter < numURLs) {
-                        delayedRequest();
-                    }
-
-                }, function(response) {
-                    var requestObj = {};
-                    requestObj.url = reqURLs[urlCounter];
-                    requestObj.status = response.status;
-                    console.log(response); 
-                    requestObj.text = response.statusText;
-                    $scope.requestList.push(requestObj);
-                    $scope.requestList = resultsList.getResults();
-                    //Add something to recall request if timeout/failure
-                    urlCounter++;
-                    if (urlCounter < numURLs) {
-                        delayedRequest();
-                    }
+            $http.get(reqURLs[counter])
+                .then(function (response) {
+                    onRequestComplete(response, counter);
+                }, function (response) {
+                    onRequestComplete(response, counter);
                 });
-                //Add support for GET/POST/ETC
-            
+            //Add support for GET/POST/ETC
+
         }, delay);
     }
 
-    delayedRequest();
+    function onRequestComplete(response, index) {
+        $scope.requestList
+            .push({
+                "url": reqURLs[index],
+                "status": response.status,
+                "text": response.statusText
+            });
+        index++;
+        if (index < reqURLs.length) {
+            delayedRequest(index);
+        }
+    }
+
+    delayedRequest(0);
 
     $scope.retryBatch = function () {
         $scope.requestList = [];
-        resultsList.setResults([]);
         urlCounter = 0;
         delayedRequest();
     };
