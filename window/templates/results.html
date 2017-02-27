@@ -1,25 +1,22 @@
 <div class="container">
-
     <h1>Results</h1>
-    
     <div>
-        <h3>Parameters to Fuzz</h3>
-        <button type="button" class="btn btn-default" ng-click="add()">Add URL</button>
+         <button type="button" class="btn btn-default" ng-click="retryBatch()">Retry Batch</button>
         <table class="table">
             <thead>
                 <tr>
-                    <th>URL Tested</th>
-                    <th>Return Status</th>
+                    <th>Reuqest URL</th>
+                    <th>Status</th>
+                    <th>Text</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="request in requestList track by $index">
-                    <td>{{ request }}</td>
-                    <td>200</td>
+                    <td>{{ request.url }}</td>
+                    <td>{{ request.status }}</td>
+                    <td>{{ request.text }}</td>
                 </tr>
             </tbody>
         </table>
-        <button type="button" class="btn btn-default" ng-click="">Retry Batch</button>
     </div>
-
 </div>

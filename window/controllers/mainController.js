@@ -1,6 +1,6 @@
 app.controller('mainController', function($scope, $location, urlList) {
     $scope.delay = 1000;
-    $scope.urlInput = "https://www.helloworld.com/?hello=world&bye=hi&job=yes";
+    $scope.urlInput = "http://services.odata.org/Northwind/Northwind.svc/?$format=json";
     $scope.urlList = urlList.getURLs();;
     var originalURL = "";
 
@@ -15,7 +15,7 @@ app.controller('mainController', function($scope, $location, urlList) {
         var searchParams = new URLSearchParams(originalURL.search.slice(1));
         $scope.paramList = [];
         for(var param of searchParams){
-            console.log(param);
+            //console.log(param);
             var oParam = {
                 "key": param[0],
                 "value": param[1]
