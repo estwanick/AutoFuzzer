@@ -1,4 +1,4 @@
-app.controller('resultsController', function ($scope, $http, $location, $timeout,
+app.controller('requestsController', function ($scope, $http, $location, $timeout,
     urlList) {
     //Zero out the results
     $scope.requestList = [];
@@ -29,10 +29,13 @@ app.controller('resultsController', function ($scope, $http, $location, $timeout
                 });
             }
 
+            //Add code to prevent infinite recursion
+
         }, delay);
     }
 
     function onRequestComplete(response, index) {
+        console.log(response);
         $scope.requestList
             .push({
                 "method": reqURLs[index].method,
@@ -52,6 +55,11 @@ app.controller('resultsController', function ($scope, $http, $location, $timeout
         $scope.requestList = [];
         urlCounter = 0;
         delayedRequest(0);
+    };
+
+    $scope.viewRequest = function(url){
+        var path = "result/" + url;
+        $location.path(path);
     };
 });
 
