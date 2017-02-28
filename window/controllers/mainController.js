@@ -25,6 +25,10 @@ app.controller('mainController', function($scope, $location, urlList) {
         //console.log($scope.paramList);
     };
 
+    $scope.removeRequest = function(index){
+        $scope.urlList.splice(index, 1);
+    };
+
     $scope.addToList = function(inputParams){
         //console.log(inputParams);
         var paramString = "";
@@ -43,7 +47,10 @@ app.controller('mainController', function($scope, $location, urlList) {
         //console.log(paramString);
         newURL = oldURL.substring(0, oldURL.indexOf("?")) + paramString;
         //console.log(newURL);
-        $scope.urlList.push(newURL);
+        $scope.urlList.push({
+            url: newURL,
+            method: $scope.method
+        });
         urlList.setURLs($scope.urlList);
         //console.log($scope.urlList);
     };

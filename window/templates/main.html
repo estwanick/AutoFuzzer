@@ -1,15 +1,24 @@
 <div class="container">
 
     <h1>Automated Fuzzing</h1>
-    
+
     <div class="input-group">
         <p>Enter the URL you wish to Fuzz</p>
-        <input type="text" class="form-control" placeholder="URL to Fuzz" ng-model="urlInput"/>
+        <div class="form-group">
+        <label for="sel1">Select list:</label>
+        <select class="form-control" ng-model="method">
+            <option>GET</option>
+            <option>POST</option>
+            <option>DELETE</option>
+            <option>PATCH</option>
+        </select>
+        </div>
+        <input type="text" class="form-control" placeholder="URL to Fuzz" ng-model="urlInput" />
         <button type="button" class="btn btn-default navbar-btn" ng-click="getParamsFromUrl(urlInput)">Get Params</button>
     </div>
 
     <div>
-        <h3>Parameters to Fuzz</h3>
+        <h3>Parameters to Fuzz [{{ method }}]</h3>
         <table class="table">
             <thead>
                 <tr>
@@ -20,10 +29,11 @@
             <tbody>
                 <tr ng-repeat="param in paramList">
                     <td>{{ param.key }}</td>
-                    <td><input type="text" ng-model="param.value" class="form-control"/></td>
+                    <td><input type="text" ng-model="param.value" class="form-control" /></td>
                 </tr>
             </tbody>
         </table>
+
         <button type="button" class="btn btn-default" ng-click="addToList(paramList)">Add URL</button>
         <button type="button" class="btn btn-default" ng-click="">Add New Parameter</button>
     </div>
@@ -33,23 +43,27 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>Method</th>
                     <th>URL</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="url in urlList track by $index">
+                <tr ng-repeat="request in urlList track by $index">
                     <td>
-                        {{ url }}
+                        {{ request.method }}
                     </td>
                     <td>
-                        <a>Remove</a>
+                        {{ request.url }}
+                    </td>
+                    <td>
+                        <a ng-click="removeRequest($index)">Remove</a>
                     </td>
                 </tr>
             </tbody>
         </table>
         <p>Delay</p>
-        <input type="number" class="form-control" step="1000" ng-model="delay"/>
+        <input type="number" class="form-control" step="1000" ng-model="delay" />
         <button type="button" class="btn btn-default" ng-click="startFuzzing(delay)">Start Fuzzing</button>
     </div>
 

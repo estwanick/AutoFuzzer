@@ -5,7 +5,7 @@
 
   "description": "Web Request Fuzzer with Automation",
   "version": "0.0.1",
-  
+  "permissions": ["<all_urls>"],
   "app": {
     "background": {
       "scripts": ["background/background.js"]

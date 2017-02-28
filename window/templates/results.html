@@ -5,6 +5,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>Method</th>
                     <th>Request URL</th>
                     <th>Status</th>
                     <th>Text</th>
@@ -12,6 +13,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="request in requestList track by $index">
+                    <td>{{ request.method }}</td>
                     <td>{{ request.url }}</td>
                     <td>{{ request.status }}</td>
                     <td>{{ request.text }}</td>

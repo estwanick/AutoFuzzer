@@ -12,13 +12,22 @@ app.controller('resultsController', function ($scope, $http, $location, $timeout
         $timeout(function () {
             //If request is successfull increment and continue
             //If request fails try again
-            $http.get(reqURLs[counter])
+            if(reqURLs[counter].method === "GET"){
+                $http.get(reqURLs[counter].url)
                 .then(function (response) {
                     onRequestComplete(response, counter);
                 }, function (response) {
                     onRequestComplete(response, counter);
                 });
-            //Add support for GET/POST/ETC
+            }
+            if(reqURLs[counter].method === "POST"){
+                $http.post(reqURLs[counter].url, "{'data':'data'}")
+                .then(function (response) {
+                    onRequestComplete(response, counter);
+                }, function (response) {
+                    onRequestComplete(response, counter);
+                });
+            }
 
         }, delay);
     }
@@ -26,7 +35,8 @@ app.controller('resultsController', function ($scope, $http, $location, $timeout
     function onRequestComplete(response, index) {
         $scope.requestList
             .push({
-                "url": reqURLs[index],
+                "method": reqURLs[index].method,
+                "url": reqURLs[index].url,
                 "status": response.status,
                 "text": response.statusText
             });
@@ -41,7 +51,7 @@ app.controller('resultsController', function ($scope, $http, $location, $timeout
     $scope.retryBatch = function () {
         $scope.requestList = [];
         urlCounter = 0;
-        delayedRequest();
+        delayedRequest(0);
     };
 });
 
