@@ -19,18 +19,17 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
                 }, function (response) {
                     onRequestComplete(response, counter);
                 });
-            }
-            if(reqURLs[counter].method === "POST"){
+            }else if(reqURLs[counter].method === "POST"){
                 $http.post(reqURLs[counter].url, "{'data':'data'}")
                 .then(function (response) {
                     onRequestComplete(response, counter);
                 }, function (response) {
                     onRequestComplete(response, counter);
                 });
+            }else{
+                console.log("request has no method");
+                counter++;
             }
-
-            //Add code to prevent infinite recursion
-
         }, delay);
     }
 
