@@ -26,13 +26,12 @@ app.controller('mainController', function($scope, $location, urlList) {
         //console.log($scope.paramList);
     };
 
-    //Combined remove fuctions into one..
-    $scope.removeItem= function(array, index){
-        array.splice(index, 1);
+    $scope.addParameter = function(){
+        $scope.paramList.push({});
     };
 
-    $scope.removeRequest = function(index){
-        $scope.urlList.splice(index, 1);
+    $scope.removeItem = function(array, index){
+        array.splice(index, 1);
     };
 
     $scope.addToList = function(inputParams){

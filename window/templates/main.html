@@ -29,7 +29,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="param in paramList track by $index">
-                    <td>{{ param.key }}</td>
+                    <td><input type="text" ng-model="param.key" class="form-control" /></td>
                     <td><input type="text" ng-model="param.value" class="form-control" /></td>
                     <td>
                         <a ng-click="removeItem(paramList, $index)">Remove</a>
@@ -39,7 +39,7 @@
         </table>
 
         <button type="button" class="btn btn-default" ng-click="addToList(paramList)">Add URL</button>
-        <button type="button" class="btn btn-default" ng-click="">Add New Parameter</button>
+        <button type="button" class="btn btn-default" ng-click="addParameter()">Add New Parameter</button>
     </div>
 
     <div>
