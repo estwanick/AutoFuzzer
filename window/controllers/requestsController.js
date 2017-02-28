@@ -40,6 +40,7 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
             .push({
                 "method": reqURLs[index].method,
                 "url": reqURLs[index].url,
+                "data": response.data,
                 "status": response.status,
                 "text": response.statusText
             });

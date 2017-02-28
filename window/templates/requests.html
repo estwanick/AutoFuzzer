@@ -5,16 +5,18 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Method</th>
-                    <th>Request URL</th>
-                    <th>Status</th>
-                    <th>Text</th>
+                    <th class="col-xs-1">Method</th>
+                    <th class="col-xs-6">Request URL</th>
+                    <th class="col-xs-2">Data</th>
+                    <th class="col-xs-1">Status</th>
+                    <th class="col-xs-2">Text</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="request in requestList track by $index">
                     <td>{{ request.method }}</td>
                     <td><a ng-click="viewRequest(request.url)">{{ request.url }}</a></td>
+                    <td><a ng-click="viewData(request.url)">{{ request.data }}</a></td>
                     <td>{{ request.status }}</td>
                     <td>{{ request.text }}</td>
                 </tr>
