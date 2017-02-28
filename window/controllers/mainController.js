@@ -26,8 +26,8 @@ app.controller('mainController', function($scope, $location, urlList) {
         //console.log($scope.paramList);
     };
 
-    $scope.addParameter = function(){
-        $scope.paramList.push({});
+    $scope.addParameter = function(inputParams){
+        inputParams.push({});
     };
 
     $scope.removeItem = function(array, index){
@@ -35,10 +35,19 @@ app.controller('mainController', function($scope, $location, urlList) {
     };
 
     $scope.addToList = function(inputParams){
-        //console.log(inputParams);
+
         var paramString = "";
         var oldURL = originalURL.toString();
         var newURL = "";
+
+        if(!inputParams || inputParams.length < 0){
+            $scope.urlList.push({
+                url: $scope.urlInput,
+                method: $scope.method
+            });
+            urlList.setURLs($scope.urlList);
+            return;
+        }
 
         for(var param of $scope.paramList){
             //Add query params to url
