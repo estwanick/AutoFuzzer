@@ -2,7 +2,9 @@ app.controller('mainController', function($scope, $location, urlList) {
     $scope.model = "GET";
     $scope.delay = 1000;
     $scope.urlInput = "http://services.odata.org/Northwind/Northwind.svc/?$format=json";
-    $scope.urlList = urlList.getURLs();;
+    $scope.urlList = urlList.getURLs();
+    $scope.defaultMethod = "GET";
+    $scope.methods = ["GET", "POST"];
     var originalURL = "";
 
     $scope.startFuzzing = function(delay){
