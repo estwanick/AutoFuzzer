@@ -3,7 +3,7 @@ app.controller('mainController', function($scope, $location, urlList) {
     $scope.delay = 1000;
     $scope.urlInput = "http://services.odata.org/Northwind/Northwind.svc/?$format=json";
     $scope.urlList = urlList.getURLs();
-    $scope.defaultMethod = "GET";
+    $scope.method = "GET";
     $scope.methods = ["GET", "POST"];
     var originalURL = "";
 
