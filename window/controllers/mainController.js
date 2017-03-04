@@ -1,4 +1,4 @@
-app.controller('mainController', function($scope, $location, urlList) {
+app.controller('mainController', function ($scope, $location, urlList) {
     $scope.model = "GET";
     $scope.delay = 1000;
     $scope.urlInput = "http://services.odata.org/Northwind/Northwind.svc/?$format=json";
@@ -7,17 +7,17 @@ app.controller('mainController', function($scope, $location, urlList) {
     $scope.methods = ["GET", "POST"];
     var originalURL = "";
 
-    $scope.startFuzzing = function(delay){
+    $scope.startFuzzing = function (delay) {
         //urlList.setOriginalURL();
         urlList.setDelay(delay);
         $location.path("requests");
     };
 
-    $scope.getParamsFromUrl = function(urlString) {  
+    $scope.getParamsFromUrl = function (urlString) {
         originalURL = new URL(urlString);
         var searchParams = new URLSearchParams(originalURL.search.slice(1));
         $scope.paramList = [];
-        for(var param of searchParams){
+        for (var param of searchParams) {
             //console.log(param);
             var oParam = {
                 "key": param[0],
@@ -28,21 +28,21 @@ app.controller('mainController', function($scope, $location, urlList) {
         //console.log($scope.paramList);
     };
 
-    $scope.addParameter = function(inputParams){
+    $scope.addParameter = function (inputParams) {
         inputParams.push({});
     };
 
-    $scope.removeItem = function(array, index){
+    $scope.removeItem = function (array, index) {
         array.splice(index, 1);
     };
 
-    $scope.addToList = function(inputParams){
+    $scope.addToList = function (inputParams) {
 
         var paramString = "";
         var oldURL = originalURL.toString();
         var newURL = "";
 
-        if(!inputParams || inputParams.length < 0){
+        if (!inputParams || inputParams.length < 0) {
             $scope.urlList.push({
                 url: $scope.urlInput,
                 method: $scope.method
@@ -51,12 +51,12 @@ app.controller('mainController', function($scope, $location, urlList) {
             return;
         }
 
-        for(var param of $scope.paramList){
+        for (var param of $scope.paramList) {
             //Add query params to url
             var urLFuzz = originalURL;
-            if(!paramString){
+            if (!paramString) {
                 paramString = "?" + param.key + "=" + param.value;
-            }else{
+            } else {
                 paramString = paramString + "&" + param.key + "=" + param.value
             }
         }
@@ -70,6 +70,24 @@ app.controller('mainController', function($scope, $location, urlList) {
         urlList.setURLs($scope.urlList);
         //console.log($scope.urlList);
     };
+
+    $scope.people = {
+        "test": "fuzz"
+    };
+    $scope.configuration = {
+        "editable": false,
+        "viewButtonClass": "btn-info",
+        "editButtonClass": "btn-success"
+    };
+    $scope.options = {
+        "mode": "code",
+        "modes": [
+            "code",
+            "text"
+        ],
+        "history": false
+    };
+
 });
 
 //https://www.helloworld.com/?hello=world&bye=hi

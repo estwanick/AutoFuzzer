@@ -1,1 +1,1 @@
-var app = angular.module('autoFuzzer', ["ngRoute"]);
+var app = angular.module('autoFuzzer', ["ngRoute", "angular-json-editor"]);
