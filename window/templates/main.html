@@ -1,34 +1,35 @@
 <div class="container">
 
-    <h1>Automated Fuzzing</h1>
-
-    <div class="input-group">
-        <p>Enter the URL you wish to Fuzz</p>
-        <input type="text" class="form-control" placeholder="URL to Fuzz" ng-model="urlInput" />
-        <button type="button" class="btn btn-default navbar-btn" ng-click="getParamsFromUrl(urlInput)">Get Params</button>
-    </div>
-
-    <div>
-        <h3>Build Request [{{ method }}]</h3>
-        <div class="row">
-            <div class="col-sm-2">
-                <select class="form-control" ng-model="method">
-                    <option ng-selected= "{{methodType == method}}" ng-repeat="methodType in methods" 
-                      value="{{methodType}}">{{methodType}}     
-                    </option>
+    <section>
+        <h3>Build Your Requests</h3>
+        <div>
+            <div class="row">
+                <div class="col-md-1">
+                    <label>Method:</label>
+                    <select class="form-control" ng-model="method">
+                        <option ng-selected= "{{methodType == method}}" ng-repeat="methodType in methods" 
+                        value="{{methodType}}">{{methodType}}     
+                        </option>
                 </select>
+                </div>
+                <div class="col-md-11">
+                    <label>URL:</label>
+                    <input type="text" class="form-control" placeholder="URL to Fuzz" ng-model="urlInput" />
+                </div>
             </div>
         </div>
-        
+    </section>
 
+    <section>
         <div class="form-group" ng-if="method == 'GET'">
             <h3>GET Parameters</h3>
+
             <table class="table">
                 <thead>
                     <tr>
                         <th class="col-xs-2">Parameter</th>
-                        <th class="col-xs-8">Value</th>
-                        <th class="col-xs-2">Action</th>
+                        <th class="col-xs-9">Value</th>
+                        <th class="col-xs-1">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,28 +42,29 @@
                     </tr>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-primary" ng-click="addGET(urlInput, paramList, method)">Add GET Request</button>
-            <button type="button" class="btn btn-default" ng-click="addParameter(paramList)">Add New Parameter</button>
+            <form class="form-inline">
+                <button type="button" class="btn btn-default navbar-btn" ng-click="getParamsFromUrl(urlInput)">Get Params</button>
+                <button type="button" class="btn btn-default" ng-click="addParameter(paramList)">Add Parameter</button>
+                <button type="button" class="btn btn-primary" ng-click="addGET(urlInput, paramList, method)">Add to Batch</button>
+            </form>
         </div>
-
 
         <div class="form-group" ng-if="method == 'POST'">
             <h3>POST Body</h3>
-            <div json-editor model="postBody" options="options" style="height: 400px;"/>
-            <button type="button" class="btn btn-primary" ng-click="addPOST(urlInput, postBody, method)">Add POST Request</button>
+            <div json-editor model="postBody" options="options" style="height: 400px;" />
+            <button type="button" class="btn btn-primary" ng-click="addPOST(urlInput, postBody, method)">Add to Batch</button>
         </div>
 
-        
-    </div>
+    </section>
 
-    <div>
-        <h3>URLs in Batch</h3>
+    <section>
+        <h3>Request Batch</h3>
         <table class="table">
             <thead>
                 <tr>
-                    <th class="col-xs-2">Method</th>
-                    <th class="col-xs-8">URL</th>
-                    <th class="col-xs-2">Action</th>
+                    <th class="col-xs-1">Method</th>
+                    <th class="col-xs-10">URL</th>
+                    <th class="col-xs-1">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -79,8 +81,13 @@
                 </tr>
             </tbody>
         </table>
-        <p>Delay</p>
-        <input type="number" class="form-control" step="1000" ng-model="delay" />
-        <button type="button" class="btn btn-default" ng-click="startFuzzing(delay)">Start Fuzzing</button>
-    </div>
+
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="delay">Delay: </label>
+                <input id="delay " type="number" class="form-control" step="1000" ng-model="delay" />
+            </div>
+            <button type="button" class="btn btn-default" ng-click="startFuzzing(delay)">Start Fuzzing</button>
+        </form>
+    </section>
 </div>

@@ -5,7 +5,7 @@ app.controller('mainController', function ($scope, $location, urlList) {
     $scope.urlBatch = urlList.getURLs();
     $scope.method = "GET";
     $scope.methods = ["GET", "POST"];
-    $scope.paramList = [];
+    $scope.paramList = [{}];
     var originalURL = "";
 
     $scope.startFuzzing = function (delay) {

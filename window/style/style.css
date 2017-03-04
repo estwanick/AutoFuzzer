@@ -1,6 +1,11 @@
 html {
   overflow-y:scroll;
 }
+
+section{
+  padding-bottom: 50px;
+}
+
 .table {
 	table-layout:fixed;
 }
@@ -13,5 +18,10 @@ html {
 }
 
 .container {
-    width: 1500px;
+    width: 80%;
+}
+
+.footer{
+  padding: 100px;
+  height: 300px;
 }
