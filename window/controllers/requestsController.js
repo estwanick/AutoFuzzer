@@ -20,7 +20,7 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
                     onRequestComplete(response, counter);
                 });
             }else if(reqURLs[counter].method === "POST"){
-                $http.post(reqURLs[counter].url, "{'data':'data'}")
+                $http.post(reqURLs[counter].url, reqURLs[counter].body)
                 .then(function (response) {
                     onRequestComplete(response, counter);
                 }, function (response) {

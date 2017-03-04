@@ -5,6 +5,7 @@ app.controller('mainController', function ($scope, $location, urlList) {
     $scope.urlBatch = urlList.getURLs();
     $scope.method = "GET";
     $scope.methods = ["GET", "POST"];
+    $scope.paramList = [];
     var originalURL = "";
 
     $scope.startFuzzing = function (delay) {
@@ -34,15 +35,14 @@ app.controller('mainController', function ($scope, $location, urlList) {
         array.splice(index, 1);
     };
 
-    $scope.addGET = function (inputParams, method) {
+    $scope.addGET = function (oUrl, inputParams, method) {
 
         var paramString = "";
-        var oldURL = originalURL.toString();
         var newURL = "";
 
         if (!inputParams || inputParams.length < 0) {
             $scope.urlBatch.push({
-                url: $scope.urlInput,
+                url: oUrl,
                 method: method
             });
             urlList.setURLs($scope.urlBatch);
@@ -59,7 +59,7 @@ app.controller('mainController', function ($scope, $location, urlList) {
             }
         }
         //console.log(paramString);
-        newURL = oldURL.substring(0, oldURL.indexOf("?")) + paramString;
+        newURL = oUrl.substring(0, oUrl.indexOf("?")) + paramString;
         //console.log(newURL);
         $scope.urlBatch.push({
             url: newURL,
@@ -69,8 +69,13 @@ app.controller('mainController', function ($scope, $location, urlList) {
         //console.log($scope.urlBatch);
     };
 
-    $scope.addPOST = function(requestBody, method){
-        console.log(requestBody + ":" + method);
+    $scope.addPOST = function(oUrl, requestBody, method){
+        $scope.urlBatch.push({
+            url: oUrl,
+            method: method,
+            body: requestBody
+        });
+        urlList.setURLs($scope.urlBatch);
     };
 
     //Configuration for JSON Editor
