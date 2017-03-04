@@ -2,7 +2,7 @@ app.controller('mainController', function ($scope, $location, urlList) {
     $scope.model = "GET";
     $scope.delay = 1000;
     $scope.urlInput = "http://services.odata.org/Northwind/Northwind.svc/?$format=json";
-    $scope.urlList = urlList.getURLs();
+    $scope.urlBatch = urlList.getURLs();
     $scope.method = "GET";
     $scope.methods = ["GET", "POST"];
     var originalURL = "";
@@ -19,13 +19,11 @@ app.controller('mainController', function ($scope, $location, urlList) {
         $scope.paramList = [];
         for (var param of searchParams) {
             //console.log(param);
-            var oParam = {
+            $scope.paramList.push({
                 "key": param[0],
                 "value": param[1]
-            }
-            $scope.paramList.push(oParam);
+            });
         }
-        //console.log($scope.paramList);
     };
 
     $scope.addParameter = function (inputParams) {
@@ -36,18 +34,18 @@ app.controller('mainController', function ($scope, $location, urlList) {
         array.splice(index, 1);
     };
 
-    $scope.addToList = function (inputParams) {
+    $scope.addGET = function (inputParams, method) {
 
         var paramString = "";
         var oldURL = originalURL.toString();
         var newURL = "";
 
         if (!inputParams || inputParams.length < 0) {
-            $scope.urlList.push({
+            $scope.urlBatch.push({
                 url: $scope.urlInput,
-                method: $scope.method
+                method: method
             });
-            urlList.setURLs($scope.urlList);
+            urlList.setURLs($scope.urlBatch);
             return;
         }
 
@@ -63,15 +61,20 @@ app.controller('mainController', function ($scope, $location, urlList) {
         //console.log(paramString);
         newURL = oldURL.substring(0, oldURL.indexOf("?")) + paramString;
         //console.log(newURL);
-        $scope.urlList.push({
+        $scope.urlBatch.push({
             url: newURL,
-            method: $scope.method
+            method: method
         });
-        urlList.setURLs($scope.urlList);
-        //console.log($scope.urlList);
+        urlList.setURLs($scope.urlBatch);
+        //console.log($scope.urlBatch);
     };
 
-    $scope.people = {
+    $scope.addPOST = function(requestBody, method){
+        console.log(requestBody + ":" + method);
+    };
+
+    //Configuration for JSON Editor
+    $scope.postBody = {
         "test": "fuzz"
     };
     $scope.configuration = {
