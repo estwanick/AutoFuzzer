@@ -1,6 +1,9 @@
-app.controller('resultController', function ($scope, $http, $routeParams) {
+app.controller('resultController', function ($scope, $http, $routeParams, requestResult) {
     console.log("Result controller");
-    $scope.url = $routeParams.url;
+    $scope.url = requestResult.getURL();
+    $scope.response = requestResult.getResponse();
+    $scope.body = requestResult.getBody();
+    $scope.method = requestResult.getMethod();
     
 });
 

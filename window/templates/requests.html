@@ -16,7 +16,7 @@
                 <tr ng-repeat="request in requestList track by $index">
                     <td>{{ request.method }}</td>
                     <td><a ng-click="viewRequest(request.url)">{{ request.url }}</a></td>
-                    <td><a ng-click="viewData(request.url)">{{ request.data }}</a></td>
+                    <td><a ng-click="viewResult(request)">{{ request.data }}</a></td>
                     <td>{{ request.status }}</td>
                     <td>{{ request.text }}</td>
                 </tr>

@@ -1,5 +1,5 @@
 app.controller('requestsController', function ($scope, $http, $location, $timeout,
-    urlList) {
+    urlList, requestResult) {
     //Zero out the results
     $scope.requestList = [];
     console.log("Results Controller");
@@ -49,6 +49,7 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
         }
     }
 
+    //We should not call this everytime we come to the results page, this should be cached
     delayedRequest(0);
 
     $scope.retryBatch = function () {
@@ -61,6 +62,17 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
         var path = "result/" + url;
         $location.path(path);
     };
+
+    $scope.viewResult = function(oRequest){
+        requestResult.setURL(oRequest.url);
+        requestResult.setMethod(oRequest.method);
+        requestResult.setBody(oRequest.body);
+        requestResult.setResponse(oRequest.data);
+
+        var path = "result/" + oRequest.url;
+        $location.path(path);
+    };
+
 });
 
 //https://www.helloworld.com/?hello=world&bye=hi

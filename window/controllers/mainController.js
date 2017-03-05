@@ -78,6 +78,11 @@ app.controller('mainController', function ($scope, $location, urlList) {
         urlList.setURLs($scope.urlBatch);
     };
 
+    $scope.emptyBatch = function(){
+        $scope.urlBatch = [];
+        urlList.setURLs($scope.urlBatch);
+    };
+
     //Configuration for JSON Editor
     $scope.postBody = {
         "test": "fuzz"
