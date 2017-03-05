@@ -21,6 +21,33 @@
     </section>
 
     <section>
+        <h3>Headers</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-xs-2">Name</th>
+                    <th class="col-xs-8">Value</th>
+                    <th class="col-xs-1">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td>
+                        <textarea rows="1" class="form-control" />
+                    </td>
+                    <td>
+                        <a ng-click="removeItem([], $index)">Remove</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <form class="form-inline">
+            <button type="button" class="btn btn-default">Add Value</button>
+        </form>
+    </section>
+
+    <section>
         <div class="form-group" ng-if="method == 'GET'">
             <h3>GET Parameters</h3>
 
@@ -49,8 +76,8 @@
                                                     <option value="1">Option one</option>
                                                     <option value="2">Option two</option>
                                                 </select>
-                                            </div>       
-                                            <button type="button" class="btn btn-default">Add</button>         
+                                            </div>
+                                            <button type="button" class="btn btn-default">Add</button>
                                         </div>
 
                                         <div class="form-group">
