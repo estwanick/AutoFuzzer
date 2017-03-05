@@ -59,7 +59,12 @@ app.controller('mainController', function ($scope, $location, urlList) {
             }
         }
         //console.log(paramString);
-        newURL = oUrl.substring(0, oUrl.indexOf("?")) + paramString;
+        if(oUrl.indexOf("?") != -1){
+            newURL = oUrl.substring(0, oUrl.indexOf("?")) + paramString;
+        }else{
+            newURL = oUrl;
+        }
+        
         //console.log(newURL);
         $scope.urlBatch.push({
             url: newURL,
