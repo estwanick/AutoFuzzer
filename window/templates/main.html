@@ -82,7 +82,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="request in urlBatch track by $index">
+                <tr ng-if="urlBatch.length > 0" ng-repeat="request in urlBatch track by $index">
                     <td>
                         {{ request.method }}
                     </td>
@@ -91,6 +91,15 @@
                     </td>
                     <td>
                         <a ng-click="removeItem(urlBatch, $index)">Remove</a>
+                    </td>
+                </tr>
+                <tr ng-if="urlBatch.length == 0">
+                    <td>
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
                     </td>
                 </tr>
             </tbody>

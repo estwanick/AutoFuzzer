@@ -12,6 +12,16 @@ textarea {
 
 .table {
 	table-layout:fixed;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+th {
+  background-color: #ececec;
+}
+
+.navbar{
+  margin-bottom: 0px;
 }
 
 .table td {
@@ -24,7 +34,11 @@ textarea {
     width: 80%;
 }
 
-.footer{
+.footer {
   padding: 100px;
   height: 300px;
+}
+
+.btn {
+  border-radius: 20px;
 }
