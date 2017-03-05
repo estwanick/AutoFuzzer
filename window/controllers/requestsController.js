@@ -50,7 +50,10 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
     }
 
     //We should not call this everytime we come to the results page, this should be cached
-    delayedRequest(0);
+    if(reqURLs.length > 0){
+        delayedRequest(0);
+    }
+    
 
     $scope.retryBatch = function () {
         $scope.requestList = [];

@@ -6,6 +6,10 @@ section{
   padding-bottom: 50px;
 }
 
+textarea { 
+  resize: vertical;
+}
+
 .table {
 	table-layout:fixed;
 }
@@ -14,7 +18,6 @@ section{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
 }
 
 .container {
