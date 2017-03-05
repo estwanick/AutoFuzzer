@@ -1,8 +1,26 @@
 <div class="jumbotron">
     <div class="container">
         <section>
-            <h3>{{ url }}</h3>
-            <h3>{{ response }}</h3>
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Request:</label>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">{{ method }}</span>
+                                <input class="form-control" type="text" ng-model="url" readonly>
+                            </div>
+                        </div>
+                        <label class="col-md-2 control-label">Body:</label>
+                        <div class="col-md-10">
+                            <textarea ng-model="body" rows="3" class="form-control" ng-model="body" readonly/>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </section>
     </div>
+</div>
+<div class="container">
+    <p>{{ response }}</p>
 </div>
