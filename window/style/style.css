@@ -42,3 +42,7 @@ th {
 .btn {
   border-radius: 20px;
 }
+
+.rowExpanded {
+  margin: 20px;
+}

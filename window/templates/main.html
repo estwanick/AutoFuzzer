@@ -29,7 +29,7 @@
                     <tr>
                         <th class="col-xs-2">Parameter</th>
                         <th class="col-xs-8">Value</th>
-                        <th class="col-xs-1">Insert</th>
+                        <th class="col-xs-1">Preset Fuzz</th>
                         <th class="col-xs-1">Action</th>
                     </tr>
                 </thead>
@@ -38,8 +38,34 @@
                         <td><input type="text" ng-model="param.key" class="form-control" /></td>
                         <td>
                             <textarea ng-model="param.value" rows="1" class="form-control" />
-                            <div ng-if="param.expanded">
-                                More stuff here!
+
+                            <div class="rowExpanded" ng-if="param.expanded">
+                                <form class="form-horizontal">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="selectba">SQL Injection</label>
+                                            <div class="col-md-4">
+                                                <select id="selectba" name="selectba" class="form-control">
+                                                    <option value="1">Option one</option>
+                                                    <option value="2">Option two</option>
+                                                </select>
+                                            </div>       
+                                            <button type="button" class="btn btn-default">Add</button>         
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="selectbasic">XSS</label>
+                                            <div class="col-md-4">
+                                                <select id="selectbasic" name="selectbasic" class="form-control">
+                                                    <option value="1">Option one</option>
+                                                    <option value="2">Option two</option>
+                                                </select>
+                                            </div>
+                                            <button type="button" class="btn btn-default">Add</button>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                                <a ng-click="param.expanded = false">Hide</a>
                             </div>
                         </td>
                         <td>
@@ -52,7 +78,7 @@
                 </tbody>
             </table>
             <form class="form-inline">
-                <button type="button" class="btn btn-default navbar-btn" ng-click="getParamsFromUrl(urlInput)">Get Params</button>
+                <button type="button" class="btn btn-default" ng-click="getParamsFromUrl(urlInput)">Get Params</button>
                 <button type="button" class="btn btn-default" ng-click="addParameter(paramList)">Add Parameter</button>
                 <button type="button" class="btn btn-primary" ng-click="addGET(urlInput, paramList, method)">Add to Batch</button>
                 <button type="button" class="btn btn-primary">Randomize Requests</button>
@@ -62,7 +88,7 @@
         <div class="form-group" ng-if="method == 'POST'">
             <h3>POST Body</h3>
             <form class="form-inline">
-                <div json-editor model="postBody" options="options" style="height: 400px; padding-bottom:20px;"/>
+                <div json-editor model="postBody" options="options" style="height: 400px; padding-bottom:20px;" />
                 <button type="button" class="btn btn-primary" ng-click="addPOST(urlInput, postBody, method)">Add to Batch</button>
                 <button type="button" class="btn btn-primary">Insert Junk</button>
                 <button type="button" class="btn btn-primary">Randomize Requests</button>
