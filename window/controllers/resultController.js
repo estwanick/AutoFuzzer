@@ -2,7 +2,7 @@ app.controller('resultController', function ($scope, $http, $routeParams, reques
     console.log("Result controller");
     $scope.url = requestResult.getURL();
     $scope.response = requestResult.getResponse();
-    $scope.body = requestResult.getBody();
+    $scope.body = JSON.stringify( requestResult.getBody() );
     $scope.method = requestResult.getMethod();
     
 });
