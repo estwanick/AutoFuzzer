@@ -1,0 +1,50 @@
+$primary-color: #ececec;
+
+html {
+  overflow-y:scroll;
+}
+
+section{
+  padding-bottom: 50px;
+}
+
+textarea { 
+  resize: vertical;
+}
+
+.table {
+	table-layout:fixed;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+th {
+  background-color: $primary-color;
+}
+
+.navbar{
+  margin-bottom: 0px;
+}
+
+.table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.container {
+    width: 80%;
+}
+
+.footer {
+  padding: 100px;
+  height: 300px;
+}
+
+.btn {
+  border-radius: 20px;
+}
+
+.rowExpanded {
+  margin: 20px;
+}

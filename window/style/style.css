@@ -1,48 +1,39 @@
 html {
-  overflow-y:scroll;
-}
+  overflow-y: scroll; }
 
-section{
-  padding-bottom: 50px;
-}
+section {
+  padding-bottom: 50px; }
 
-textarea { 
-  resize: vertical;
-}
+textarea {
+  resize: vertical; }
 
 .table {
-	table-layout:fixed;
+  table-layout: fixed;
   margin-top: 10px;
-  margin-bottom: 0px;
-}
+  margin-bottom: 0px; }
 
 th {
-  background-color: #ececec;
-}
+  background-color: #ececec; }
 
-.navbar{
-  margin-bottom: 0px;
-}
+.navbar {
+  margin-bottom: 0px; }
 
 .table td {
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
-}
+  text-overflow: ellipsis; }
 
 .container {
-    width: 80%;
-}
+  width: 80%; }
 
 .footer {
   padding: 100px;
-  height: 300px;
-}
+  height: 300px; }
 
 .btn {
-  border-radius: 20px;
-}
+  border-radius: 20px; }
 
 .rowExpanded {
-  margin: 20px;
-}
+  margin: 20px; }
+
+/*# sourceMappingURL=style.css.map */
