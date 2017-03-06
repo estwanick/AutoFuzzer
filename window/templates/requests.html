@@ -7,19 +7,21 @@
             <thead>
                 <tr>
                     <th class="col-xs-1">Method</th>
-                    <th class="col-xs-6">Request URL</th>
+                    <th class="col-xs-5">Request URL</th>
                     <th class="col-xs-2">Data</th>
                     <th class="col-xs-1">Status</th>
                     <th class="col-xs-2">Text</th>
+                    <th class="col-xs-1">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="request in requestList track by $index">
                     <td>{{ request.method }}</td>
-                    <td><a ng-click="viewRequest(request.url)">{{ request.url }}</a></td>
+                    <td>{{ request.url }}</td>
                     <td><a ng-click="viewResult(request)">{{ request.data }}</a></td>
                     <td>{{ request.status }}</td>
                     <td>{{ request.text }}</td>
+                    <td><a>See more</a></td>
                 </tr>
             </tbody>
         </table>

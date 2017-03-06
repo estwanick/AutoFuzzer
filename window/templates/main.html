@@ -31,19 +31,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><input type="text" class="form-control" /></td>
+                <tr ng-repeat="header in headerList track by $index">
+                    <td><input type="text" class="form-control" ng-model="header.key"/></td>
                     <td>
-                        <textarea rows="1" class="form-control" />
+                        <textarea rows="1" class="form-control" ng-model="header.value"/>
                     </td>
                     <td>
-                        <a ng-click="removeItem([], $index)">Remove</a>
+                        <a ng-click="removeItem(headerList, $index)">Remove</a>
                     </td>
                 </tr>
             </tbody>
         </table>
         <form class="form-inline">
-            <button type="button" class="btn btn-default">Add Value</button>
+            <button type="button" class="btn btn-default" ng-click="addParameter(headerList)">Add Value</button>
         </form>
     </section>
 
@@ -116,7 +116,7 @@
             <h3>POST Body</h3>
             <form class="form-inline">
                 <div json-editor model="postBody" options="options" style="height: 400px; padding-bottom:20px;" />
-                <button type="button" class="btn btn-primary" ng-click="addPOST(urlInput, postBody, method)">Add to Batch</button>
+                <button type="button" class="btn btn-primary" ng-click="addPOST(urlInput, postBody, method, headerList)">Add to Batch</button>
                 <button type="button" class="btn btn-primary">Insert Junk</button>
                 <button type="button" class="btn btn-primary">Randomize Requests</button>
             </form>

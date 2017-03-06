@@ -1,7 +1,7 @@
 app.service('urlList', function() {
-    var urlList = [];
-    var delay = 0;
-    var originalURL= "";
+    let urlList = [];
+    let delay = 0;
+    let originalURL= "";
 
     this.getURLs = function() {
         return urlList;

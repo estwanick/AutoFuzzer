@@ -1,4 +1,4 @@
-app.controller('mainController', function ($scope, $location, urlList) {
+app.controller('mainController', function ($scope, $location, urlList, resultsCache) {
     $scope.model = "GET";
     $scope.delay = 1000;
     $scope.urlInput = "http://services.odata.org/Northwind/Northwind.svc/?$format=json";
@@ -6,19 +6,25 @@ app.controller('mainController', function ($scope, $location, urlList) {
     $scope.method = "GET";
     $scope.methods = ["GET", "POST"];
     $scope.paramList = [{}];
-    var originalURL = "";
+    $scope.headerList = [{}];
+    let originalURL = "";
 
     $scope.startFuzzing = function (delay) {
-        //urlList.setOriginalURL();
+        resultsCache.setNewDataFlag(true);
         urlList.setDelay(delay);
+        $location.path("requests");
+    };
+
+    $scope.viewResults = function (){
+        resultsCache.setNewDataFlag(false);
         $location.path("requests");
     };
 
     $scope.getParamsFromUrl = function (urlString) {
         originalURL = new URL(urlString);
-        var searchParams = new URLSearchParams(originalURL.search.slice(1));
+        let searchParams = new URLSearchParams(originalURL.search.slice(1));
         $scope.paramList = [];
-        for (var param of searchParams) {
+        for (let param of searchParams) {
             //console.log(param);
             $scope.paramList.push({
                 "key": param[0],
@@ -37,8 +43,8 @@ app.controller('mainController', function ($scope, $location, urlList) {
 
     $scope.addGET = function (oUrl, inputParams, method) {
 
-        var paramString = "";
-        var newURL = "";
+        let paramString = "";
+        let newURL = "";
 
         if (!inputParams || inputParams.length < 0) {
             $scope.urlBatch.push({
@@ -49,9 +55,9 @@ app.controller('mainController', function ($scope, $location, urlList) {
             return;
         }
 
-        for (var param of $scope.paramList) {
+        for (let param of $scope.paramList) {
             //Add query params to url
-            var urLFuzz = originalURL;
+            let urLFuzz = originalURL;
             if (!paramString) {
                 paramString = "?" + param.key + "=" + param.value;
             } else {
@@ -74,12 +80,14 @@ app.controller('mainController', function ($scope, $location, urlList) {
         //console.log($scope.urlBatch);
     };
 
-    $scope.addPOST = function(oUrl, requestBody, method){
+    $scope.addPOST = function(oUrl, requestBody, method, headers){
         $scope.urlBatch.push({
             url: oUrl,
             method: method,
-            body: requestBody
+            body: requestBody,
+            headers: headers
         });
+        console.log($scope.urlBatch);
         urlList.setURLs($scope.urlBatch);
     };
 
@@ -107,6 +115,3 @@ app.controller('mainController', function ($scope, $location, urlList) {
     };
 
 });
-
-//https://www.helloworld.com/?hello=world&bye=hi
-//https://www.helloworld.com/?hello=world&bye=hi&job=yes

@@ -1,12 +1,17 @@
 app.controller('requestsController', function ($scope, $http, $location, $timeout,
-    urlList, requestResult) {
-    //Zero out the results
-    $scope.requestList = [];
-    console.log("Results Controller");
-    console.log(urlList.getURLs());
+    urlList, requestResult, resultsCache) {
+    
+    let reqURLs = urlList.getURLs();
+    let delay = urlList.getDelay();
+    let cachedResults = resultsCache.getResults();
 
-    var reqURLs = urlList.getURLs();
-    var delay = urlList.getDelay();
+    if(reqURLs.length > 0 && resultsCache.getNewDataFlag()){
+        $scope.requestList = [];
+        delayedRequest(0);
+    }else{
+        console.log("Nothing new to see here");
+        $scope.requestList = cachedResults;
+    }
  
     function delayedRequest(counter) {
         $timeout(function () {
@@ -35,35 +40,33 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
 
     function onRequestComplete(response, index) {
         console.log(response);
-        $scope.requestList
-            .push({
+        let requestObj = {
                 "method": reqURLs[index].method,
                 "url": reqURLs[index].url,
                 "body": reqURLs[index].body,
                 "data": response.data,
                 "status": response.status,
                 "text": response.statusText
-            });
+            };
+
+        $scope.requestList.push(requestObj);
+        resultsCache.addRequest(requestObj);
+
         index++;
         if (index < reqURLs.length) {
             delayedRequest(index);
         }
     }
 
-    //We should not call this everytime we come to the results page, this should be cached
-    if(reqURLs.length > 0){
-        delayedRequest(0);
-    }
-    
-
     $scope.retryBatch = function () {
         $scope.requestList = [];
+        resultsCache.setNewDataFlag(true);
         urlCounter = 0;
         delayedRequest(0);
     };
 
     $scope.viewRequest = function(url){
-        var path = "result/" + url;
+        let path = "result/" + url;
         $location.path(path);
     };
 
@@ -73,11 +76,8 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
         requestResult.setBody(oRequest.body);
         requestResult.setResponse(oRequest.data);
 
-        var path = "result/" + oRequest.url;
+        let path = "result/" + oRequest.url;
         $location.path(path);
     };
 
 });
-
-//https://www.helloworld.com/?hello=world&bye=hi
-//https://www.helloworld.com/?hello=world&bye=hi&job=yes
