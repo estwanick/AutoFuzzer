@@ -12,14 +12,14 @@ textarea {
   resize: vertical;
 }
 
-.table {
-	table-layout:fixed;
-  margin-top: 10px;
-  margin-bottom: 0px;
-}
-
 th {
   background-color: $primary-color;
+}
+
+.table {
+	table-layout:fixed;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .navbar{

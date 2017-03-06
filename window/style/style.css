@@ -7,13 +7,13 @@ section {
 textarea {
   resize: vertical; }
 
-.table {
-  table-layout: fixed;
-  margin-top: 10px;
-  margin-bottom: 0px; }
-
 th {
   background-color: #ececec; }
+
+.table {
+  table-layout: fixed;
+  margin-top: 0px;
+  margin-bottom: 0px; }
 
 .navbar {
   margin-bottom: 0px; }
