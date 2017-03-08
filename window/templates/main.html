@@ -105,22 +105,26 @@
                     </tr>
                 </tbody>
             </table>
-            <form class="form-inline">
+            <div class="pull-left">
                 <button type="button" class="btn btn-default" ng-click="getParamsFromUrl(urlInput)">Get Params</button>
                 <button type="button" class="btn btn-default" ng-click="addParameter(paramList)">Add Parameter</button>
+                <button type="button" class="btn btn-default" ng-click="randomizeValues(paramList)">Random Data</button>
+            </div>
+            <div class="pull-right">
                 <button type="button" class="btn btn-primary" ng-click="addGET(urlInput, paramList, method, headerList)">Add to Batch</button>
-                <button type="button" class="btn btn-primary">Randomize Requests</button>
-            </form>
+            </div>
         </div>
 
         <div class="form-group" ng-if="method == 'POST'">
             <h3>POST Body</h3>
-            <form class="form-inline">
-                <div json-editor model="postBody" options="options" style="height: 400px; padding-bottom:20px;" />
+            <div json-editor model="postBody" options="options" style="height: 400px; padding-bottom:20px;" />
+            <div class="pull-left">
+                <button type="button" class="btn btn-default">Insert Junk</button>
+                <button type="button" class="btn btn-default">Randomize Requests</button>
+            </div>
+            <div class="pull-right">
                 <button type="button" class="btn btn-primary" ng-click="addPOST(urlInput, postBody, method, headerList)">Add to Batch</button>
-                <button type="button" class="btn btn-primary">Insert Junk</button>
-                <button type="button" class="btn btn-primary">Randomize Requests</button>
-            </form>
+            </div>
         </div>
 
     </section>
@@ -131,7 +135,8 @@
             <thead>
                 <tr>
                     <th class="col-xs-1">Method</th>
-                    <th class="col-xs-10">URL</th>
+                    <th class="col-xs-9">URL</th>
+                    <th class="col-xs-1">Test</th>
                     <th class="col-xs-1">Action</th>
                 </tr>
             </thead>
@@ -142,6 +147,9 @@
                     </td>
                     <td>
                         {{ request.url }}
+                    </td>
+                    <td>
+                        <a ng-click="">Web View</a>
                     </td>
                     <td>
                         <a ng-click="removeItem(urlBatch, $index)">Remove</a>

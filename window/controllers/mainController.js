@@ -10,6 +10,7 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
     $scope.paramList = [{}];
     $scope.headerList = [{}];
     let originalURL = ""; //change this
+    const allAttacks = $scope.sqlInjectionOptions.concat($scope.xssOptions);
 
     $scope.startFuzzing = function (delay) {
         resultsCache.setNewDataFlag(true);
@@ -35,16 +36,15 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
         }
     };
 
-    $scope.addParameter = function (inputParams) {
-        inputParams.push({});
-    };
-
-    $scope.insertAttack = function(paramIndex, attackText){
-        $scope.paramList[paramIndex].value = attackText;
-    };
-
-    $scope.removeItem = function (array, index) {
-        array.splice(index, 1);
+    $scope.randomizeValues = function(paramsList){
+        const pLength = allAttacks.length;
+        paramsList.forEach(
+            function(param){
+                var attackValue = allAttacks[Math.floor((Math.random() * pLength))];
+                console.log(attackValue);
+                param.value = attackValue;
+            }
+        );
     };
 
     $scope.addGET = function (oUrl, inputParams, method, headers) {
@@ -96,6 +96,18 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
         });
         console.log($scope.urlBatch);
         urlList.setURLs($scope.urlBatch);
+    };
+
+    $scope.addParameter = function (inputParams) {
+        inputParams.push({});
+    };
+
+    $scope.insertAttack = function(paramIndex, attackText){
+        $scope.paramList[paramIndex].value = attackText;
+    };
+
+    $scope.removeItem = function (array, index) {
+        array.splice(index, 1);
     };
 
     $scope.emptyBatch = function(){
