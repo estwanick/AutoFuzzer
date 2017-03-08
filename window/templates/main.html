@@ -9,7 +9,7 @@
                         <option ng-selected= "{{methodType == method}}" ng-repeat="methodType in methods" 
                         value="{{methodType}}">{{methodType}}     
                         </option>
-                </select>
+                    </select>
                 </div>
                 <div class="col-md-11">
                     <label>URL:</label>
@@ -69,25 +69,27 @@
                                 <form class="form-horizontal">
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="selectba">SQL Injection</label>
+                                            <label class="col-md-4 control-label">SQL Injection</label>
                                             <div class="col-md-4">
-                                                <select id="selectba" name="selectba" class="form-control">
-                                                    <option value="1">Option one</option>
-                                                    <option value="2">Option two</option>
+                                                <select class="form-control" ng-model="sqlText">
+                                                    <option ng-repeat="injectText in sqlInjectionOptions" value="{{injectText}}">
+                                                        {{injectText}}   
+                                                    </option>
                                                 </select>
                                             </div>
-                                            <button type="button" class="btn btn-default">Add</button>
+                                            <button type="button" class="btn btn-default" ng-click="insertAttack($index, sqlText)">Add</button>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="selectbasic">XSS</label>
+                                            <label class="col-md-4 control-label">XSS</label>
                                             <div class="col-md-4">
-                                                <select id="selectbasic" name="selectbasic" class="form-control">
-                                                    <option value="1">Option one</option>
-                                                    <option value="2">Option two</option>
+                                                <select class="form-control" ng-model="xssText">
+                                                    <option ng-repeat="injectText in xssOptions" value="{{injectText}}">
+                                                        {{injectText}}   
+                                                    </option>
                                                 </select>
                                             </div>
-                                            <button type="button" class="btn btn-default">Add</button>
+                                            <button type="button" class="btn btn-default" ng-click="insertAttack($index, xssText)">Add</button>
                                         </div>
                                     </fieldset>
                                 </form>
@@ -106,7 +108,7 @@
             <form class="form-inline">
                 <button type="button" class="btn btn-default" ng-click="getParamsFromUrl(urlInput)">Get Params</button>
                 <button type="button" class="btn btn-default" ng-click="addParameter(paramList)">Add Parameter</button>
-                <button type="button" class="btn btn-primary" ng-click="addGET(urlInput, paramList, method)">Add to Batch</button>
+                <button type="button" class="btn btn-primary" ng-click="addGET(urlInput, paramList, method, headerList)">Add to Batch</button>
                 <button type="button" class="btn btn-primary">Randomize Requests</button>
             </form>
         </div>

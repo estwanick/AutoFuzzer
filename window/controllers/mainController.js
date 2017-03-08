@@ -1,13 +1,15 @@
-app.controller('mainController', function ($scope, $location, urlList, resultsCache) {
+app.controller('mainController', function ($scope, $location, urlList, resultsCache, appConstants) {
     $scope.model = "GET";
     $scope.delay = 1000;
     $scope.urlInput = "http://services.odata.org/Northwind/Northwind.svc/?$format=json";
     $scope.urlBatch = urlList.getURLs();
-    $scope.method = "GET";
-    $scope.methods = ["GET", "POST"];
+    $scope.method = appConstants.getDefaultMethod();
+    $scope.methods = appConstants.getMethods();
+    $scope.sqlInjectionOptions = appConstants.getSqlInjection();
+    $scope.xssOptions = appConstants.getXss();
     $scope.paramList = [{}];
     $scope.headerList = [{}];
-    let originalURL = "";
+    let originalURL = ""; //change this
 
     $scope.startFuzzing = function (delay) {
         resultsCache.setNewDataFlag(true);
