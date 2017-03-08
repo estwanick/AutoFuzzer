@@ -15,26 +15,17 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
  
     function delayedRequest(counter) {
         $timeout(function () {
-            //If request is successfull increment and continue
-            //If request fails try again
-            if(reqURLs[counter].method === "GET"){
-                $http.get(reqURLs[counter].url)
-                .then(function (response) {
-                    onRequestComplete(response, counter);
-                }, function (response) {
-                    onRequestComplete(response, counter);
-                });
-            }else if(reqURLs[counter].method === "POST"){
-                $http.post(reqURLs[counter].url, reqURLs[counter].body)
-                .then(function (response) {
-                    onRequestComplete(response, counter);
-                }, function (response) {
-                    onRequestComplete(response, counter);
-                });
-            }else{
-                console.log("request has no method");
-                counter++;
-            }
+            $http({
+                method: reqURLs[counter].method,
+                url: reqURLs[counter].url,
+                headers: reqURLs[counter].headers,
+                data:  reqURLs[counter].body
+            })
+            .then(function (response) {
+                onRequestComplete(response, counter);
+            }, function (response) {
+                onRequestComplete(response, counter);
+            });
         }, delay);
     }
 

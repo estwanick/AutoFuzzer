@@ -1,9 +1,9 @@
 app.service('requestResult', function() {
-    var reqId = "";
-    var reqUrl = "";
-    var reqBody = "";
-    var reqResponse = "";
-    var reqMethod = "";
+    let reqId = "";
+    let reqUrl = "";
+    let reqBody = "";
+    let reqResponse = "";
+    let reqMethod = "";
 
     this.getId = function() {
         return reqtUrl;
