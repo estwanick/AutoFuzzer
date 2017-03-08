@@ -4,5 +4,6 @@ app.controller('resultController', function ($scope, $http, $routeParams, reques
     $scope.response = requestResult.getResponse();
     $scope.body = JSON.stringify( requestResult.getBody() );
     $scope.method = requestResult.getMethod();
+    $scope.headers = JSON.stringify( requestResult.getHeaders() );
     
 });

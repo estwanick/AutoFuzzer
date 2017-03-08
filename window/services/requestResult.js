@@ -4,6 +4,7 @@ app.service('requestResult', function() {
     let reqBody = "";
     let reqResponse = "";
     let reqMethod = "";
+    let reqHeaders = [];
 
     this.getId = function() {
         return reqtUrl;
@@ -43,6 +44,14 @@ app.service('requestResult', function() {
 
     this.setMethod = function(method){
         reqMethod = method; 
+    };
+
+    this.getHeaders = function() {
+        return reqHeaders;
+    };
+
+    this.setHeaders = function(headers){
+        reqHeaders = headers; 
     };
 
 });

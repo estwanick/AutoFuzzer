@@ -39,11 +39,15 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
         inputParams.push({});
     };
 
+    $scope.insertAttack = function(paramIndex, attackText){
+        $scope.paramList[paramIndex].value = attackText;
+    };
+
     $scope.removeItem = function (array, index) {
         array.splice(index, 1);
     };
 
-    $scope.addGET = function (oUrl, inputParams, method) {
+    $scope.addGET = function (oUrl, inputParams, method, headers) {
 
         let paramString = "";
         let newURL = "";
@@ -76,7 +80,8 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
         //console.log(newURL);
         $scope.urlBatch.push({
             url: newURL,
-            method: method
+            method: method,
+            headers: headers
         });
         urlList.setURLs($scope.urlBatch);
         //console.log($scope.urlBatch);

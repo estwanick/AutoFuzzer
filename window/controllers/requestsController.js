@@ -33,6 +33,7 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
         console.log(response);
         let requestObj = {
                 "method": reqURLs[index].method,
+                "headers": reqURLs[index].headers,
                 "url": reqURLs[index].url,
                 "body": reqURLs[index].body,
                 "data": response.data,
@@ -66,7 +67,7 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
         requestResult.setMethod(oRequest.method);
         requestResult.setBody(oRequest.body);
         requestResult.setResponse(oRequest.data);
-
+        requestResult.setHeaders(oRequest.headers);
         let path = "result/" + oRequest.url;
         $location.path(path);
     };
