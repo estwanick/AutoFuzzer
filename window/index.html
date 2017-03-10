@@ -4,8 +4,6 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="node_modules/jsoneditor/dist/jsoneditor.css">
-  <link rel="stylesheet" href="public/angular-json-editor/angular-json-editor.css">
   <link rel="stylesheet" href="style/style.css" rel="stylesheet" />
   <link href="style/navbar-fixed-side.css" rel="stylesheet" />
 </head>
@@ -44,15 +42,18 @@
   </div>
 
   <div class="container">
-    <div class="footer"></div>
+    <div class="footer">
+    </div>
   </div>
 
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="node_modules/angular/angular.js"></script>
   <script src="node_modules/angular-route/angular-route.js"></script>
-  <script src="node_modules/jsoneditor/dist/jsoneditor.min.js"></script>
-  <script src="public/angular-json-editor/angular-json-editor.js"></script>
+
+  <script type="text/javascript" src="public/bower_components/ace-builds/src-min-noconflict/ace.js"></script>
+  <script type="text/javascript" src="public/bower_components/angular-ui-ace/ui-ace.js"></script>
+  
   <script src="app.js"></script>
   <script src="router.js"></script>
   <script src="services/urlList.js"></script>
@@ -62,6 +63,8 @@
   <script src="controllers/mainController.js"></script>
   <script src="controllers/requestsController.js"></script>
   <script src="controllers/resultController.js"></script>
+
+  <script src="controllers/aceController.js"></script>
 </body>
 
 </html>

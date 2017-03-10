@@ -114,23 +114,4 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
         $scope.urlBatch = [];
         urlList.setURLs($scope.urlBatch);
     };
-
-    //Configuration for JSON Editor
-    $scope.postBody = {
-        "test": "fuzz"
-    };
-    $scope.configuration = {
-        "editable": false,
-        "viewButtonClass": "btn-info",
-        "editButtonClass": "btn-success"
-    };
-    $scope.options = {
-        "mode": "code",
-        "modes": [
-            "code",
-            "text"
-        ],
-        "history": false
-    };
-
 });
