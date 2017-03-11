@@ -16,6 +16,10 @@ th {
   background-color: $primary-color;
 }
 
+input {
+  border: none;
+}
+
 .table {
 	table-layout:fixed;
   margin-top: 0px;
@@ -47,10 +51,25 @@ th {
   border-radius: 20px;
 }
 
+.panel-body {
+  padding: 5px;
+}
+
+.panel {
+    border: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
 .rowExpanded {
   margin: 20px;
 }
 
 .ace_editor { 
   height: 200px; 
+}
+
+.underlined{
+  border-bottom: 2px solid black;
+  border-radius: 0px;
 }
