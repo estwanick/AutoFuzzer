@@ -10,5 +10,4 @@ Navigate to Chrome Extensions:
 ```
 chrome://extensions/
 ```
-Press 'Load unpacked extension'
-Press Launch
+Press 'Load unpacked extension then Press Launch
