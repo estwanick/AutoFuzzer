@@ -13,42 +13,15 @@
                 </div>
                 <div class="col-md-11">
                     <label>URL:</label>
-                    <input type="text" class="form-control" placeholder="URL to Fuzz" ng-model="urlInput" />
+                    <input type="text" class="underlined" placeholder="URL to Fuzz" ng-model="urlInput" />
                 </div>
             </div>
         </div>
     </section>
 
     <section>
-        <h3>Headers</h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="col-xs-2">Name</th>
-                    <th class="col-xs-8">Value</th>
-                    <th class="col-xs-1">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="header in headerList track by $index">
-                    <td><input type="text" class="form-control" ng-model="header.key"/></td>
-                    <td>
-                        <textarea rows="1" class="form-control" ng-model="header.value"/>
-                    </td>
-                    <td>
-                        <a ng-click="removeItem(headerList, $index)">Remove</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <form class="form-inline">
-            <button type="button" class="btn btn-default" ng-click="addParameter(headerList)">Add Value</button>
-        </form>
-    </section>
-
-    <section>
-        <div class="form-group" ng-if="method == 'GET'">
-            <h3>GET Parameters</h3>
+        <div class="form-group">
+            <h3>Query Parameters</h3>
 
             <table class="table">
                 <thead>
@@ -61,9 +34,9 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="param in paramList track by $index">
-                        <td><input type="text" ng-model="param.key" class="form-control" /></td>
+                        <td><input type="text" ng-model="param.key" class="underlined" placeholder="Query Parameter"/></td>
                         <td>
-                            <textarea ng-model="param.value" rows="1" class="form-control" />
+                            <textarea ng-model="param.value" rows="1" class="underlined" placeholder="Value"/>
 
                             <div class="rowExpanded" ng-if="param.expanded">
                                 <form class="form-horizontal">
@@ -105,28 +78,64 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="pull-left">
-                <button type="button" class="btn btn-default" ng-click="getParamsFromUrl(urlInput)">Get Params</button>
-                <button type="button" class="btn btn-default" ng-click="addParameter(paramList)">Add Parameter</button>
-                <button type="button" class="btn btn-default" ng-click="randomizeValues(paramList)">Random Data</button>
-            </div>
-            <div class="pull-right">
-                <button type="button" class="btn btn-primary" ng-click="addGET(urlInput, paramList, method, headerList)">Add to Batch</button>
-            </div>
-        </div>
-
-        <div class="form-group" ng-if="method == 'POST'">
-            <h3>POST Body</h3>
-            <div ng-model="postBody" ui-ace></div>
-            <div class="pull-left">
-                <button type="button" class="btn btn-default">Insert Junk</button>
-                <button type="button" class="btn btn-default">Randomize Requests</button>
-            </div>
-            <div class="pull-right">
-                <button type="button" class="btn btn-primary" ng-click="addPOST(urlInput, postBody, method, headerList)">Add to Batch</button>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="pull-left">
+                        <button type="button" class="btn btn-default" ng-click="getParamsFromUrl(urlInput)">Get Params</button>
+                        <button type="button" class="btn btn-default" ng-click="addParameter(paramList)">Add Parameter</button>
+                        <button type="button" class="btn btn-default" ng-click="randomizeValues(paramList)">Random Data</button>
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary" ng-click="addRequest(urlInput, paramList, method, headerList)">Add to Batch</button>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
+    <section>
+        <h3>Headers</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-xs-2">Name</th>
+                    <th class="col-xs-8">Value</th>
+                    <th class="col-xs-1">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="header in headerList track by $index">
+                    <td><input type="text" class="underlined" ng-model="header.key" placeholder="Key"/></td>
+                    <td>
+                        <textarea rows="1" class="underlined" ng-model="header.value" placeholder="Value"/>
+                    </td>
+                    <td>
+                        <a ng-click="removeItem(headerList, $index)">Remove</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <button type="button" class="btn btn-default" ng-click="addParameter(headerList)">Add Value</button>
+            </div>
+        </div>
+    </section>
+
+    <section ng-if="method == 'POST'">
+        <h3>Request Body</h3>
+        <div ng-model="requestBody" ui-ace></div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="pull-left">
+                    <button type="button" class="btn btn-default">Insert Junk</button>
+                    <button type="button" class="btn btn-default">Randomize Requests</button>
+                </div>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" ng-click="addRequest(urlInput, paramList, method, headerList, requestBody)">Add to Batch</button>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section>
@@ -167,13 +176,19 @@
             </tbody>
         </table>
 
-        <form class="form-inline">
-            <div class="form-group">
-                <label for="delay">Delay: </label>
-                <input id="delay " type="number" class="form-control" step="1000" ng-model="delay" />
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="delay">Delay: </label>
+                        <input id="delay " type="number" class="form-control" step="1000" ng-model="delay" />
+                    </div>
+                    <button type="button" class="btn btn-primary" ng-click="startFuzzing(delay)">Start Fuzzing</button>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-danger" ng-click="emptyBatch()">Empty Batch</button>
+                    </div>
+                </form>
             </div>
-            <button type="button" class="btn btn-primary" ng-click="startFuzzing(delay)">Start Fuzzing</button>
-            <button type="button" class="btn btn-danger" ng-click="emptyBatch()">Empty Batch</button>
-        </form>
+        </div>
     </section>
 </div>
