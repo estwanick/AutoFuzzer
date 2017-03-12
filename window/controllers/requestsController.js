@@ -31,9 +31,11 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
 
     function onRequestComplete(response, index) {
         console.log(response);
+        console.log(response.headers("Content-Type"));
         let requestObj = {
                 "method": reqURLs[index].method,
                 "headers": reqURLs[index].headers,
+                "contentType": response.headers("Content-Type"),
                 "url": reqURLs[index].url,
                 "body": reqURLs[index].body,
                 "data": response.data,
@@ -68,6 +70,7 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
         requestResult.setBody(oRequest.body);
         requestResult.setResponse(oRequest.data);
         requestResult.setHeaders(oRequest.headers);
+        requestResult.setContentType(oRequest.contentType);
         let path = "result/" + oRequest.url;
         $location.path(path);
     };

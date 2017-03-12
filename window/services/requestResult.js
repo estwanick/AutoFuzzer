@@ -5,6 +5,7 @@ app.service('requestResult', function() {
     let reqResponse = "";
     let reqMethod = "";
     let reqHeaders = [];
+    let contentType = "";
 
     this.getId = function() {
         return reqtUrl;
@@ -52,6 +53,14 @@ app.service('requestResult', function() {
 
     this.setHeaders = function(headers){
         reqHeaders = headers; 
+    };
+
+    this.getContentType = function() {
+        return contentType;
+    };
+
+    this.setContentType= function(type){
+        contentType = type; 
     };
 
 });
