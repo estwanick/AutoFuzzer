@@ -47,7 +47,7 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
         );
     };
 
-    $scope.addGET = function (oUrl, inputParams, method, headers) {
+    $scope.addRequest = function (oUrl, inputParams, method, headers, requestBody) {
 
         let paramString = "";
         let newURL = "";
@@ -76,26 +76,15 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
         }else{
             newURL = oUrl;
         }
-        
-        //console.log(newURL);
+
         $scope.urlBatch.push({
             url: newURL,
             method: method,
-            headers: headers
+            headers: headers,
+            body: requestBody
         });
         urlList.setURLs($scope.urlBatch);
         //console.log($scope.urlBatch);
-    };
-
-    $scope.addPOST = function(oUrl, requestBody, method, headers){
-        $scope.urlBatch.push({
-            url: oUrl,
-            method: method,
-            body: requestBody,
-            headers: headers
-        });
-        console.log($scope.urlBatch);
-        urlList.setURLs($scope.urlBatch);
     };
 
     $scope.addParameter = function (inputParams) {
