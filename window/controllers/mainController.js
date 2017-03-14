@@ -23,15 +23,33 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
         $location.path("requests");
     };
 
-    $scope.getParamsFromUrl = function (urlString) {
-        originalURL = new URL(urlString);
+    $scope.getParamsFromUrl = function (urlString) {    
+        $scope.paramList = [];  
+        if(urlString.length <= 0){
+            $scope.paramList.push({
+                "key": "",
+                "value": ""
+            });
+            return;
+        }else{
+            originalURL = new URL(urlString);
+        }
+
         let searchParams = new URLSearchParams(originalURL.search.slice(1));
         $scope.paramList = [];
+
         for (let param of searchParams) {
             //console.log(param);
             $scope.paramList.push({
                 "key": param[0],
                 "value": param[1]
+            });
+        }
+        //If no PARAMS -> Leave a blank row
+        if($scope.paramList.length <= 0){
+            $scope.paramList.push({
+                "key": "",
+                "value": ""
             });
         }
     };
