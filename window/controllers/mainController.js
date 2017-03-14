@@ -12,6 +12,22 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
     let originalURL = ""; //change this
     const allAttacks = $scope.sqlInjectionOptions.concat($scope.xssOptions);
 
+    let aceEditor;
+    $scope.aceLoaded = function(_editor) {
+        aceEditor = _editor.getSession();
+        aceEditor.setMode("ace/mode/python");
+    };
+
+    $scope.setEditor = function(mode){
+        if(mode === 'XML'){
+            aceEditor.setMode('ace/mode/xml');
+        }else if(mode === 'JSON'){
+            aceEditor.setMode('ace/mode/json');
+        }else{
+            aceEditor.setMode('ace/mode/text');
+        }
+    };
+
     $scope.startFuzzing = function (delay) {
         resultsCache.setNewDataFlag(true);
         urlList.setDelay(delay);
