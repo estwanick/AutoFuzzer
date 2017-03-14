@@ -4,9 +4,9 @@ function getContentType(content, contentType){
     }else if(contentType.includes("xml")){
         return vkbeautify.xml(content, 4);
     }else if(contentType.includes("html")){
-        return "html";
+        return vkbeautify.html(content, 4);
     }else{
-        return "text";
+        return content;
     }
 }
 

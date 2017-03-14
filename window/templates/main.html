@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-md-11">
                     <label>URL:</label>
-                    <input type="text" class="underlined" placeholder="URL to Fuzz" ng-model="urlInput" />
+                    <input type="text" class="underlined" placeholder="URL to Fuzz" ng-model="urlInput" ng-change="getParamsFromUrl(urlInput)"/>
                 </div>
             </div>
         </div>
