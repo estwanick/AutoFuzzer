@@ -1,3 +1,4 @@
+//TODO: Make strings constants
 app.controller('mainController', function ($scope, $location, urlList, resultsCache, appConstants) {
     $scope.model = "GET";
     $scope.delay = 1000;
@@ -5,6 +6,7 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
     $scope.urlBatch = urlList.getURLs();
     $scope.method = appConstants.getDefaultMethod();
     $scope.methods = appConstants.getMethods();
+    $scope.bodyType = "XML";
     $scope.sqlInjectionOptions = appConstants.getSqlInjection();
     $scope.xssOptions = appConstants.getXss();
     $scope.paramList = [{}];
@@ -13,18 +15,38 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
     const allAttacks = $scope.sqlInjectionOptions.concat($scope.xssOptions);
 
     let aceEditor;
+    let bodyType;
     $scope.aceLoaded = function(_editor) {
         aceEditor = _editor.getSession();
-        aceEditor.setMode("ace/mode/python");
+        aceEditor.setMode("ace/mode/xml");
     };
 
     $scope.setEditor = function(mode){
         if(mode === 'XML'){
+            bodyType = "XML";
             aceEditor.setMode('ace/mode/xml');
         }else if(mode === 'JSON'){
+            bodyType = "JSON";
             aceEditor.setMode('ace/mode/json');
         }else{
+            bodyType = "RAW";
             aceEditor.setMode('ace/mode/text');
+        }
+    };
+
+    $scope.randomizeBody = function(requestBody){
+        //TODO: Pass bodyType to this function instead of it being global
+        //Read XML or JSON body and insert randomized fuzz into each field value
+        console.log(bodyType + ":" + requestBody);
+        if(bodyType === "JSON"){
+            console.log( Object.keys(JSON.parse(requestBody)) );
+            //Convert to json
+            //Replace values with junk
+            //convert back and display
+        }else if(bodyType === "XML"){
+            //Parse xml into object 
+            //Replace values with junk
+            //convert back and display
         }
     };
 
