@@ -1,6 +1,6 @@
 //TODO: Make strings constants
+
 app.controller('mainController', function ($scope, $location, urlList, resultsCache, appConstants) {
-    $scope.model = "GET";
     $scope.delay = 1000;
     $scope.urlInput = "http://services.odata.org/Northwind/Northwind.svc/?$format=json";
     $scope.urlBatch = urlList.getURLs();
@@ -47,6 +47,7 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
             //Parse xml into object 
             //Replace values with junk
             //convert back and display
+            
         }
     };
 

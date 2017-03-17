@@ -2,7 +2,7 @@
  * This will eventually be moved into a database
  */
 app.service('appConstants', function() {
-    const defaultMethod = "GET";
+    const defaultMethod = "POST";
     const methods = ["GET", "POST"];
     const sqlInjection = [
         "; SELECT * FROM members; DROP members--",
