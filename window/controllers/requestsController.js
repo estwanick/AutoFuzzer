@@ -59,11 +59,6 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
         delayedRequest(0);
     };
 
-    $scope.viewRequest = function(url){
-        let path = "result/" + url;
-        $location.path(path);
-    };
-
     $scope.viewResult = function(oRequest){
         requestResult.setURL(oRequest.url);
         requestResult.setMethod(oRequest.method);

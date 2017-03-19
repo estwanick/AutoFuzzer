@@ -1,30 +1,48 @@
-<div class="jumbotron">
-    <div class="container">
-        <section>
-            <form class="form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">Request:</label>
-                        <div class="col-md-10">
-                            <div class="input-group">
-                                <span class="input-group-addon">{{ method }}</span>
-                                <input class="form-control" type="text" ng-model="url" readonly>
+<div class="container">
+    <section>
+        <div class="panel panel-default panel-top">
+            <div class="panel-heading">Request Details</div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Request:</label>
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">{{ method }}</span>
+                                    <input type="text" class="underlined" ng-model="url" readonly>
+                                </div>
+                            </div>
+                            <label class="col-md-2 control-label">Headers:</label>
+                            <div class="col-md-10">
+                                <div class="form-group row" ng-repeat="header in headers track by $index">
+                                    <div class="col-md-2">
+                                        <input type="text" class="underlined" ng-model="header.key" readonly>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="underlined" ng-model="header.value" readonly
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="method != 'GET'">
+                                <label class="col-md-2 control-label">Body:</label>
+                                <div class="col-md-10">
+                                    <div ng-model="body" ng-readonly="true" ui-ace></div>
+                                </div>
                             </div>
                         </div>
-                        <label class="col-md-2 control-label">Headers:</label>
-                        <div class="col-md-10">
-                            <textarea ng-model="headers" rows="3" class="form-control" readonly/>
-                        </div>
-                        <label class="col-md-2 control-label">Body:</label>
-                        <div class="col-md-10">
-                            <div ng-model="body" ng-readonly="true" ui-ace></div>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-        </section>
-    </div>
-</div>
-<div class="container">
-    <div ng-model="response" ui-ace="{mode: 'xml', useWrapMode : true}" ng-readonly="true"></div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="panel panel-default panel-top">
+            <div class="panel-heading">Response</div>
+            <div class="panel-body">
+                <div ng-model="response" ui-ace="{mode: 'xml', useWrapMode : true}" ng-readonly="true"></div>
+            </div>
+        </div>
+    </section>
 </div>

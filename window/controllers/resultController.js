@@ -14,8 +14,7 @@ app.controller('resultController', function ($scope, $http, $routeParams, reques
     console.log("Result controller");
     $scope.url = requestResult.getURL();
     $scope.method = requestResult.getMethod();
-    $scope.headers = JSON.stringify( requestResult.getHeaders() );
     $scope.body = requestResult.getBody(); //Should know the type of the body
     $scope.response = getContentType(requestResult.getResponse(), requestResult.getContentType());
-
+    $scope.headers = requestResult.getHeaders();
 });
