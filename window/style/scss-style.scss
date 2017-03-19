@@ -4,16 +4,16 @@ html {
   overflow-y:scroll;
 }
 
-section{
-  padding-bottom: 50px;
-}
-
 textarea { 
   resize: vertical;
 }
 
+table {
+  background-color: rgb(255, 255, 255);
+}
+
 th {
-  background-color: $primary-color;
+  background-color: #eaeaea;
 }
 
 input {
@@ -24,10 +24,31 @@ textarea{
   border: none;
 }
 
+body{
+  background-color: rgb(251, 251, 251);
+}
+
 .table {
 	table-layout:fixed;
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+.btn-toolbar {
+    padding: 5px;
+}
+
+.panel-default>.panel-heading{
+  color: white;
+  background-color: #2574A9;
+}
+
+.panel-body {
+    padding: 10px;
+}
+
+.panel-top{
+  margin-top: 20px;
 }
 
 .navbar{
@@ -43,7 +64,7 @@ textarea{
 }
 
 .container {
-    width: 80%;
+    width: 100%;
 }
 
 .footer {
@@ -59,10 +80,16 @@ textarea{
   padding: 5px;
 }
 
-.panel {
-    border: 0px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+.navbar-inverse {
+    background-color: #22313F;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
 }
 
 .rowExpanded {
@@ -85,5 +112,9 @@ textarea{
   line-height: 1.42857143;
   color: #555;
   background-color: #fff;
+}
+
+.tableToolbarBottom{
+  padding: 5px;
 }
 
