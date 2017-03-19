@@ -121,10 +121,12 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
         for (let param of $scope.paramList) {
             //Add query params to url
             let urLFuzz = originalURL;
+            let pKey = param.key || '';
+            let pValue = param.value || '';
             if (!paramString) {
-                paramString = "?" + param.key + "=" + param.value;
+                paramString = "?" + pKey + "=" + pValue;
             } else {
-                paramString = paramString + "&" + param.key + "=" + param.value
+                paramString = paramString + "&" + pKey + "=" + pValue;
             }
         }
         //console.log(paramString);
