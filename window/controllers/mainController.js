@@ -136,14 +136,23 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
             newURL = oUrl;
         }
 
+        //Deep copy
+        let newHeaders = headers.map(a => Object.assign({}, a));
+        newHeaders.forEach(function(hPair, index){
+            if((Object.keys(hPair).length === 0 && hPair.constructor === Object) || 
+               (hPair.key === '' && hPair.value === '')){
+                newHeaders.splice(index, 1);
+            }
+        });
+
         $scope.urlBatch.push({
             url: newURL,
             method: method,
-            headers: headers,
+            headers: newHeaders,
             body: requestBody
         });
         urlList.setURLs($scope.urlBatch);
-        //console.log($scope.urlBatch);
+        console.log($scope.urlBatch);
     };
 
     $scope.addParameter = function (inputParams) {

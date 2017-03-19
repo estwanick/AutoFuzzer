@@ -13,6 +13,8 @@
                                     <input type="text" class="underlined" ng-model="url" readonly>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group" ng-if="headers.length > 0">
                             <label class="col-md-2 control-label">Headers:</label>
                             <div class="col-md-10">
                                 <div class="form-group row" ng-repeat="header in headers track by $index">
@@ -20,10 +22,12 @@
                                         <input type="text" class="underlined" ng-model="header.key" readonly>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="text" class="underlined" ng-model="header.value" readonly
+                                        <input type="text" class="underlined" ng-model="header.value" readonly </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group">
                             <div ng-if="method != 'GET'">
                                 <label class="col-md-2 control-label">Body:</label>
                                 <div class="col-md-10">
