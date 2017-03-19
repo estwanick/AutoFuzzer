@@ -131,9 +131,9 @@
             <div class="panel-heading">Body</div>
             <div class="panel-body">
                 <div class="btn-toolbar" role="toolbar">
+                    <button type="button" class="btn btn-default" ng-click="setEditor('RAW')">RAW</button>
                     <button type="button" class="btn btn-default" ng-click="setEditor('XML')">XML</button>
                     <button type="button" class="btn btn-default" ng-click="setEditor('JSON')">JSON</button>
-                    <button type="button" class="btn btn-default" ng-click="setEditor('RAW')">RAW</button>
                 </div>
                 <div id="bodyEditor" ng-model="requestBody" ui-ace="{onLoad: aceLoaded}"></div>
                 <div class="btn-toolbar" role="toolbar">

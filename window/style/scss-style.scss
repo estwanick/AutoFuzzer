@@ -1,4 +1,7 @@
-$primary-color: #ececec;
+$primary-color: #2574A9;
+$secondary-color: #22313F;
+$body-grey: rgb(251, 251, 251);
+$med-grey: #555;
 
 html {
   overflow-y:scroll;
@@ -9,7 +12,7 @@ textarea {
 }
 
 table {
-  background-color: rgb(255, 255, 255);
+  background-color: white;
 }
 
 th {
@@ -25,7 +28,7 @@ textarea{
 }
 
 body{
-  background-color: rgb(251, 251, 251);
+  background-color: $body-grey;
 }
 
 .table {
@@ -40,7 +43,7 @@ body{
 
 .panel-default>.panel-heading{
   color: white;
-  background-color: #2574A9;
+  background-color: $primary-color;
 }
 
 .panel-body {
@@ -81,7 +84,7 @@ body{
 }
 
 .navbar-inverse {
-    background-color: #22313F;
+    background-color: $secondary-color;
 }
 
 .navbar-inverse .navbar-brand {
@@ -101,7 +104,7 @@ body{
 }
 
 .underlined{
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid $primary-color;
   border-radius: 0px;
   box-shadow: none;
   display: block;
@@ -110,8 +113,8 @@ body{
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #555;
-  background-color: #fff;
+  color: $med-grey;
+  background-color: white;
 }
 
 .tableToolbarBottom{
