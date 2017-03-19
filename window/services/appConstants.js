@@ -3,7 +3,7 @@
  */
 app.service('appConstants', function() {
     const defaultMethod = "POST";
-    const methods = ["GET", "POST"];
+    const methods = ["GET", "POST", "PUT", "PATCH", "DELETE"];
     const sqlInjection = [
         "; SELECT * FROM members; DROP members--",
         "/*!32302 10*/",
