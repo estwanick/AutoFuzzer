@@ -1,0 +1,27 @@
+<form class="form-horizontal">
+    <fieldset>
+        <div class="form-group">
+            <label class="col-md-4 control-label">SQL Injection</label>
+            <div class="col-md-4">
+                <select class="form-control" ng-model="sqlText">
+                    <option ng-repeat="injectText in sqlInjectionOptions" value="{{injectText}}">
+                        {{injectText}}   
+                    </option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-default" ng-click="setAttack(field, sqlText)">Add</button>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">XSS</label>
+            <div class="col-md-4">
+                <select class="form-control" ng-model="xssText">
+                    <option ng-repeat="injectText in xssOptions" value="{{injectText}}">
+                        {{injectText}}   
+                    </option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-default" ng-click="setAttack(field, xssText)">Add</button>
+        </div>
+    </fieldset>
+</form>
