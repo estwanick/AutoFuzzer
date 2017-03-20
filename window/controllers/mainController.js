@@ -62,6 +62,10 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
         $location.path("requests");
     };
 
+    $scope.viewHistory = function (){
+        $location.path("history");
+    };
+
     $scope.getParamsFromUrl = function (urlString) {    
         $scope.paramList = [];  
         if(urlString.length <= 0){

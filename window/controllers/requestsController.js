@@ -1,5 +1,5 @@
 app.controller('requestsController', function ($scope, $http, $location, $timeout,
-    urlList, requestResult, resultsCache) {
+    urlList, requestResult, resultsCache, requestHistory) {
     
     let reqURLs = urlList.getURLs();
     let delay = urlList.getDelay();
@@ -45,7 +45,7 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
 
         $scope.requestList.push(requestObj);
         resultsCache.addRequest(requestObj);
-
+        requestHistory.appendRequest(requestObj);
         index++;
         if (index < reqURLs.length) {
             delayedRequest(index);

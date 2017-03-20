@@ -17,5 +17,9 @@ app.config(function($routeProvider, $compileProvider, $sceDelegateProvider) {
     .when("/result/:url*", {
         templateUrl : "templates/result.html",
         controller: "resultController"
+    })
+    .when("/history", {
+        templateUrl : "templates/history.html",
+        controller: "historyController"
     });
 });
