@@ -31,7 +31,7 @@
                             <div ng-if="method != 'GET'">
                                 <label class="col-md-2 control-label">Body:</label>
                                 <div class="col-md-10">
-                                    <div ng-model="body" ng-readonly="true" ui-ace></div>
+                                    <div ng-model="body" ng-readonly="true" ui-ace="{mode: 'text', useWrapMode : true}"></div>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
         <div class="panel panel-default panel-top">
             <div class="panel-heading">Response</div>
             <div class="panel-body">
-                <div ng-model="response" ui-ace="{mode: 'xml', useWrapMode : true}" ng-readonly="true"></div>
+                <div ng-model="response" ui-ace="{mode: 'text', useWrapMode : true}" ng-readonly="true"></div>
             </div>
         </div>
     </section>
