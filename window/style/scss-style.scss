@@ -100,6 +100,17 @@ body{
     margin: 30px auto;
 }
 
+.modal-header {
+  background-color: $primary-color;
+  color: white;
+  border-radius: 5px;
+}
+
+.close {
+  color: white;
+  opacity: 1;
+}
+
 .rowExpanded {
   margin: 20px;
 }

@@ -71,6 +71,15 @@ body {
   width: 1000px;
   margin: 30px auto; }
 
+.modal-header {
+  background-color: #2574A9;
+  color: white;
+  border-radius: 5px; }
+
+.close {
+  color: white;
+  opacity: 1; }
+
 .rowExpanded {
   margin: 20px; }
 
