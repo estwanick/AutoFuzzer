@@ -1,5 +1,3 @@
-//TODO: Make strings constants
-
 app.controller('mainController', 
     ['$scope', '$location', 'ModalService', 'urlList', 'resultsCache', 'appConstants',
     function ($scope, $location, ModalService, urlList, resultsCache, appConstants) {

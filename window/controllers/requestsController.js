@@ -54,7 +54,10 @@ app.controller('requestsController',
         }
     }
 
-    $scope.retryBatch = function () {
+    $scope.retryBatch = function (reqList) {
+        if(reqList.length <= 0){
+            return;
+        }
         $scope.requestList = [];
         resultsCache.setNewDataFlag(true);
         urlCounter = 0;
