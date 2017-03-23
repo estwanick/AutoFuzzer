@@ -1,4 +1,6 @@
-app.controller('historyController', function ($scope, $http, $location, requestHistory, requestResult) {
+app.controller('historyController', 
+    ['$scope', '$http', '$location', 'requestHistory', 'requestResult',
+    function ($scope, $http, $location, requestHistory, requestResult) {
     let recentHistory = requestHistory.getHistory().slice().reverse();
     $scope.historyList = recentHistory;
     $scope.clearHistory = function (){
@@ -15,4 +17,4 @@ app.controller('historyController', function ($scope, $http, $location, requestH
         let path = "result/" + oRequest.url;
         $location.path(path);
     };
-});
+}]);

@@ -1,4 +1,6 @@
-app.controller('modalController', function ($scope, $element, close, appConstants) {
+app.controller('modalController', 
+    ['$scope', '$element', 'close', 'appConstants',
+    function ($scope, $element, close, appConstants) {
 
     let sqlInjectionOptions = appConstants.getSqlInjection();
     let xssOptions = appConstants.getXss();
@@ -32,4 +34,4 @@ app.controller('modalController', function ($scope, $element, close, appConstant
         $element.modal('hide');
     };
 
-});
+}]);

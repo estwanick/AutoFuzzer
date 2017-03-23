@@ -7,10 +7,12 @@ function getContentType(content, contentType){
         return content;
     }
 }
-app.controller('resultController', function ($scope, $http, $routeParams, requestResult) {
+app.controller('resultController', 
+    ['$scope', '$http', '$routeParams', 'requestResult',
+    function ($scope, $http, $routeParams, requestResult) {
     $scope.url = requestResult.getURL();
     $scope.method = requestResult.getMethod();
     $scope.body = requestResult.getBody(); //Should know the type of the body
     $scope.response = getContentType(requestResult.getResponse(), requestResult.getContentType());
     $scope.headers = requestResult.getHeaders();
-});
+}]);

@@ -1,4 +1,6 @@
-app.controller('requestsController', function ($scope, $http, $location, $timeout,
+app.controller('requestsController', 
+    ['$scope','$http','$location','$timeout','urlList','requestResult','resultsCache','requestHistory',
+    function ($scope, $http, $location, $timeout,
     urlList, requestResult, resultsCache, requestHistory) {
     
     let reqURLs = urlList.getURLs();
@@ -70,4 +72,4 @@ app.controller('requestsController', function ($scope, $http, $location, $timeou
         $location.path(path);
     };
 
-});
+}]);

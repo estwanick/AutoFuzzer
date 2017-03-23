@@ -1,4 +1,6 @@
-app.config(function($routeProvider, $compileProvider, $sceDelegateProvider) {
+app.config(
+    [ '$routeProvider', '$compileProvider', '$sceDelegateProvider', 
+    function($routeProvider, $compileProvider, $sceDelegateProvider) {
 
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension):/);
     $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension):/);
@@ -22,4 +24,4 @@ app.config(function($routeProvider, $compileProvider, $sceDelegateProvider) {
         templateUrl : "templates/history.html",
         controller: "historyController"
     });
-});
+}]);

@@ -1,6 +1,8 @@
 //TODO: Make strings constants
 
-app.controller('mainController', function ($scope, $location, ModalService, urlList, resultsCache, appConstants) {
+app.controller('mainController', 
+    ['$scope', '$location', 'ModalService', 'urlList', 'resultsCache', 'appConstants',
+    function ($scope, $location, ModalService, urlList, resultsCache, appConstants) {
     $scope.delay = 1000;
     $scope.urlInput = "http://services.odata.org/Northwind/Northwind.svc/?$format=json";
     $scope.urlBatch = urlList.getURLs();
@@ -186,4 +188,4 @@ app.controller('mainController', function ($scope, $location, ModalService, urlL
         });
   };
 
-});
+}]);
