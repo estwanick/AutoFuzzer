@@ -67,6 +67,10 @@ body {
 .navbar-inverse .navbar-nav > li > a {
   color: white; }
 
+.modal-dialog {
+  width: 1000px;
+  margin: 30px auto; }
+
 .rowExpanded {
   margin: 20px; }
 

