@@ -1,0 +1,44 @@
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title">Attack Search</h3>
+      </div>
+      <div class="modal-body">
+        <div class="btn-toolbar" role="toolbar">
+              <button type="button" class="btn btn-default" ng-click="filterBy('ALL')">All</button>
+              <button type="button" class="btn btn-default" ng-click="filterBy('SQL')">SQL Injection</button>
+              <button type="button" class="btn btn-default" ng-click="filterBy('XSS')">XSS</button>
+              <button type="button" class="btn btn-default" ng-click="filterBy('OTHER')">Other</button>
+      </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-xs-3">Name</th>
+                    <th class="col-xs-8">Insert</th>
+                    <th class="col-xs-1">action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="attack in attackList track by $index">
+                    <td><input type="text" ng-model="attack.name" class="underlined" readonly/></td>
+                    <td>
+                        <textarea ng-model="attack.value" rows="3" class="underlined" readyonly/>
+                    </td>
+                    <td>
+                        <a ng-click="close(attack.value)" data-dismiss="modal">Add</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" ng-click="cancel()" class="btn">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
