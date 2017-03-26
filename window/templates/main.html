@@ -24,6 +24,37 @@
 
     <section>
         <div class="panel panel-default">
+            <div class="panel-heading">Headers</div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-2">Name</th>
+                            <th class="col-xs-8">Value</th>
+                            <th class="col-xs-1">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="header in headerList track by $index">
+                            <td><input type="text" class="underlined" ng-model="header.key" placeholder="Key" /></td>
+                            <td>
+                                <textarea rows="1" class="underlined" ng-model="header.value" placeholder="Value" />
+                            </td>
+                            <td>
+                                <a ng-click="removeItem(headerList, $index)">Remove</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="btn-toolbar" role="toolbar">
+                    <button type="button" class="btn btn-default" ng-click="addParameter(headerList)">Add Value</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="panel panel-default">
             <div class="panel-heading">Query Parameters</div>
             <div class="panel-body">
                 <table class="table">
@@ -64,37 +95,6 @@
                     <div class="pull-right">
                         <button type="button" class="btn btn-primary" ng-click="addRequest(urlInput, paramList, method, headerList)">Add to Batch</button>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="panel panel-default">
-            <div class="panel-heading">Headers</div>
-            <div class="panel-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="col-xs-2">Name</th>
-                            <th class="col-xs-8">Value</th>
-                            <th class="col-xs-1">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="header in headerList track by $index">
-                            <td><input type="text" class="underlined" ng-model="header.key" placeholder="Key" /></td>
-                            <td>
-                                <textarea rows="1" class="underlined" ng-model="header.value" placeholder="Value" />
-                            </td>
-                            <td>
-                                <a ng-click="removeItem(headerList, $index)">Remove</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="btn-toolbar" role="toolbar">
-                    <button type="button" class="btn btn-default" ng-click="addParameter(headerList)">Add Value</button>
                 </div>
             </div>
         </div>
@@ -167,7 +167,7 @@
                     <form class="form-inline">
                         <div class="form-group">
                             <label for="delay">Delay: </label>
-                            <input id="delay " type="number" class="form-control" step="1000" ng-model="delay" />
+                            <input id="delay" type="number" class="form-control" step="1000" ng-model="delay" />
                         </div>
                         <button type="button" class="btn btn-primary" ng-click="startFuzzing(delay)">Start Fuzzing</button>
                         <div class="pull-right">

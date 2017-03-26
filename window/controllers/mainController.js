@@ -102,8 +102,7 @@ app.controller('mainController',
         paramsList.forEach(
             function(param){
                 var attackValue = allAttacks[Math.floor((Math.random() * pLength))];
-                console.log(attackValue);
-                param.value = attackValue;
+                param.value = attackValue.value;
             }
         );
     };
