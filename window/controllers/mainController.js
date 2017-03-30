@@ -66,10 +66,10 @@ app.controller('mainController',
         $location.path("history");
     };
 
-    $scope.getParamsFromUrl = function (urlString) {    
-        $scope.paramList = [];  
+    $scope.getParamsFromUrl = function (urlString, pList) {    
+        pList.length = 0;  
         if(urlString.length <= 0){
-            $scope.paramList.push({
+            pList.push({
                 "key": "",
                 "value": ""
             });
@@ -79,18 +79,18 @@ app.controller('mainController',
         }
 
         let searchParams = new URLSearchParams(originalURL.search.slice(1));
-        $scope.paramList = [];
+        //pList = []; //why is this here
 
         for (let param of searchParams) {
             //console.log(param);
-            $scope.paramList.push({
+            pList.push({
                 "key": param[0],
                 "value": param[1]
             });
         }
         //If no PARAMS -> Leave a blank row
-        if($scope.paramList.length <= 0){
-            $scope.paramList.push({
+        if(pList.length <= 0){
+            pList.push({
                 "key": "",
                 "value": ""
             });
