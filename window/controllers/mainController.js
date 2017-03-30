@@ -13,6 +13,7 @@ app.controller('mainController',
     $scope.headerList = [{}];
     let originalURL = ""; //change this
     const allAttacks = $scope.sqlInjectionOptions.concat($scope.xssOptions);
+    const pLength = allAttacks.length;
 
     let aceEditor;
     let bodyType;
@@ -34,15 +35,23 @@ app.controller('mainController',
         }
     };
 
-    $scope.randomizeBody = function(requestBody){
+    $scope.randomizeBody = function(){
         //TODO: Pass bodyType to this function instead of it being global
         //Read XML or JSON body and insert randomized fuzz into each field value
+        let requestBody = aceEditor.getValue();
         console.log(bodyType + ":" + requestBody);
         if(bodyType === "JSON"){
-            console.log( Object.keys(JSON.parse(requestBody)) );
             //Convert to json
+            let jObj = JSON.parse(requestBody);
             //Replace values with junk
+            for(let key in jObj){
+                var attackValue = allAttacks[Math.floor((Math.random() * pLength))];
+                jObj[key] = attackValue.value;
+                //Add option to recurse entire object
+            }
             //convert back and display
+            aceEditor.setValue(JSON.stringify(jObj));
+            
         }else if(bodyType === "XML"){
             //Parse xml into object 
             //Replace values with junk
@@ -98,10 +107,9 @@ app.controller('mainController',
     };
 
     $scope.randomizeValues = function(paramsList){
-        const pLength = allAttacks.length;
         paramsList.forEach(
             function(param){
-                var attackValue = allAttacks[Math.floor((Math.random() * pLength))];
+                let attackValue = allAttacks[Math.floor((Math.random() * pLength))];
                 param.value = attackValue.value;
             }
         );
