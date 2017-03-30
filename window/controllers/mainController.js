@@ -47,7 +47,7 @@ app.controller('mainController',
             for(let key in jObj){
                 var attackValue = allAttacks[Math.floor((Math.random() * pLength))];
                 jObj[key] = attackValue.value;
-                //Add option to recurse entire object
+                //Add option to traverse entire object
             }
             //convert back and display
             aceEditor.setValue(JSON.stringify(jObj));
@@ -134,6 +134,7 @@ app.controller('mainController',
             let urLFuzz = originalURL;
             let pKey = param.key || '';
             let pValue = param.value || '';
+            //check for blank params
             if (!paramString) {
                 paramString = "?" + pKey + "=" + pValue;
             } else {

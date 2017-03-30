@@ -9,13 +9,14 @@ app.controller('requestsController',
 
     if(reqURLs.length > 0 && resultsCache.getNewDataFlag()){
         $scope.requestList = [];
-        delayedRequest(0);
+        delayedRequest(0, delay);
     }else{
         console.log("Nothing new to see here");
         $scope.requestList = cachedResults;
     }
  
-    function delayedRequest(counter) {
+    //Modify this to take delay as parameter and retry request counter
+    function delayedRequest(counter, reqDelay) {
         $timeout(function () {
             $http({
                 method: reqURLs[counter].method,
@@ -28,12 +29,23 @@ app.controller('requestsController',
             }, function (response) {
                 onRequestComplete(response, counter);
             });
-        }, delay);
+        }, reqDelay);
     }
+
+    let errDelay = delay;
 
     function onRequestComplete(response, index) {
         console.log(response);
-        console.log(response.headers("Content-Type"));
+
+        //This needs to be tested
+        if(response.status == -1){
+            console.log("Repeat: " + index);
+            delayedRequest(index, errDelay + 500); //repeat request with increased delay
+            return;
+        }else{
+            errDelay = delay;
+        }
+
         let requestObj = {
                 "method": reqURLs[index].method,
                 "headers": reqURLs[index].headers,
@@ -50,7 +62,7 @@ app.controller('requestsController',
         requestHistory.appendRequest(requestObj);
         index++;
         if (index < reqURLs.length) {
-            delayedRequest(index);
+            delayedRequest(index, delay);
         }
     }
 
@@ -61,7 +73,7 @@ app.controller('requestsController',
         $scope.requestList = [];
         resultsCache.setNewDataFlag(true);
         urlCounter = 0;
-        delayedRequest(0);
+        delayedRequest(0, delay);
     };
 
     $scope.viewResult = function(oRequest){

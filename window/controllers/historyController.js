@@ -14,7 +14,7 @@ app.controller('historyController',
         requestResult.setResponse(oRequest.data);
         requestResult.setHeaders(oRequest.headers);
         requestResult.setContentType(oRequest.contentType);
-        let path = "result/" + oRequest.url;
+        let path = "result/" + "RANDOMKEY"; //TODO:// Generate some random request id ..
         $location.path(path);
     };
 }]);
