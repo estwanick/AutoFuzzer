@@ -39,11 +39,14 @@ app.controller('requestsController',
 
         //This needs to be tested
         if(response.status == -1){
+            //Counter retries, if retry > 3, move on to something else
+            errDelay = errDelay + 500;
             console.log("Repeat: " + index);
-            delayedRequest(index, errDelay + 500); //repeat request with increased delay
+            console.log("Delay: " + errDelay);
+            delayedRequest(index, errDelay); //repeat request with increased delay
             return;
         }else{
-            errDelay = delay;
+            errDelay = delay; //Reset errDelay to default
         }
 
         let requestObj = {
