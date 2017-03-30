@@ -6,6 +6,7 @@ app.controller('requestsController',
     let reqURLs = urlList.getURLs();
     let delay = urlList.getDelay();
     let cachedResults = resultsCache.getResults();
+    let cTimer;
 
     if(reqURLs.length > 0 && resultsCache.getNewDataFlag()){
         $scope.requestList = [];
@@ -14,10 +15,14 @@ app.controller('requestsController',
         console.log("Nothing new to see here");
         $scope.requestList = cachedResults;
     }
+
+    $scope.stop = function(){
+        $timeout.cancel(cTimer);
+    };
  
     //Modify this to take delay as parameter and retry request counter
     function delayedRequest(counter, reqDelay) {
-        $timeout(function () {
+        cTimer = $timeout(function () {
             $http({
                 method: reqURLs[counter].method,
                 url: reqURLs[counter].url,
@@ -47,6 +52,7 @@ app.controller('requestsController',
             return;
         }else{
             errDelay = delay; //Reset errDelay to default
+            //Reset error retry counter 
         }
 
         let requestObj = {
