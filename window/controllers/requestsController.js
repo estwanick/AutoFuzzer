@@ -33,7 +33,7 @@ app.controller('requestsController',
                 onRequestComplete(response, counter);
             }, function (response) {
                 onRequestComplete(response, counter);
-            });
+            });//check (catch) for chrome DOS
         }, reqDelay);
     }
 
