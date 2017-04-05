@@ -14,6 +14,7 @@ app.controller('mainController',
     let originalURL = ""; //change this
     const allAttacks = $scope.sqlInjectionOptions.concat($scope.xssOptions);
     const pLength = allAttacks.length;
+    $scope.headers = appConstants.getHeaders();
 
     let aceEditor;
     let bodyType;
@@ -188,10 +189,25 @@ app.controller('mainController',
         }).then(function(modal) {
             modal.element.modal();
             modal.close.then(function(result) {
-                console.log(result);
                 scope.param.value = result.value;
             });
         });
   };
+
+  $scope.onHeaderSelected = function(value){
+        let output = [];
+        angular.forEach($scope.headers, function(header){
+            if(header.toLowerCase().indexOf(value.header.key.toLowerCase()) >= 0){
+                output.push(header);
+            }
+        });
+        value.header.vis = true;
+        value.header.filterHeaders = output;
+    };
+
+    $scope.fillHeader = function(newValue, header){
+        header.key = newValue;
+        header.vis = false;
+    };
 
 }]);
