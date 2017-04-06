@@ -137,7 +137,7 @@ app.controller('mainController',
             let pValue = param.value || '';
             //check for blank params
             if (!paramString) {
-                if(pKey && pValue){
+                if(pKey || pValue){
                     paramString = "?" + pKey + "=" + pValue;
                 }
             } else {
