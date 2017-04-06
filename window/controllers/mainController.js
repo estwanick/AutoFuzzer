@@ -144,30 +144,30 @@ app.controller('mainController',
                 paramString = paramString + "&" + pKey + "=" + pValue;
             }
         }
-        //console.log(paramString);
+
         if(oUrl.indexOf("?") != -1){
             newURL = oUrl.substring(0, oUrl.indexOf("?")) + paramString;
         }else{
             newURL = oUrl;
         }
 
-        //Deep copy
-        let newHeaders = headers.map(a => Object.assign({}, a));
-        newHeaders.forEach(function(hPair, index){
-            if((Object.keys(hPair).length === 0 && hPair.constructor === Object) || 
-               (hPair.key === '' && hPair.value === '')){
-                newHeaders.splice(index, 1);
+        let cleanedHeaders = [];
+        headers.forEach(function(hPair, index){
+            if(Object.keys(hPair).length > 0){
+                cleanedHeaders.push({
+                    key: hPair.key,
+                    value: hPair.value
+                });
             }
         });
 
         $scope.urlBatch.push({
             url: newURL,
             method: method,
-            headers: newHeaders,
+            headers: cleanedHeaders,
             body: requestBody
         });
         urlList.setURLs($scope.urlBatch);
-        console.log($scope.urlBatch);
     };
 
     $scope.addParameter = function (inputParams) {
