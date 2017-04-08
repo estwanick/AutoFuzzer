@@ -26,16 +26,16 @@
             <div class="panel-heading">Headers</div>
             <div class="panel-body">
                 <table class="table">
-                    <thead>
+                    <!--<thead>
                         <tr>
                             <th class="col-xs-2">Name</th>
                             <th class="col-xs-8">Value</th>
                             <th class="col-xs-1">Action</th>
                         </tr>
-                    </thead>
+                    </thead>-->
                     <tbody>
                         <tr ng-repeat="header in headerList track by $index">
-                            <td>
+                            <td class="col-xs-2">
                                 <input type="text" class="underlined" ng-model="header.key" placeholder="Key" ng-keyup="onHeaderSelected(this)"/>
                                 <!-- What to do about vis?-->
                                 
@@ -44,10 +44,10 @@
                                     ng-repeat="headerText in header.filterHeaders" ng-click="fillHeader(headerText,header)">{{ headerText }}</li>
                                 </ul>
                             </td>
-                            <td>
+                            <td class="col-xs-8">
                                 <textarea rows="1" class="underlined" ng-model="header.value" placeholder="Value" />
                             </td>
-                            <td>
+                            <td class="col-xs-1">
                                 <a ng-click="removeItem(headerList, $index)">Remove</a>
                             </td>
                         </tr>
@@ -65,18 +65,18 @@
             <div class="panel-heading">Query Parameters</div>
             <div class="panel-body">
                 <table class="table">
-                    <thead>
+                    <!--<thead>
                         <tr>
                             <th class="col-xs-2">Parameter</th>
                             <th class="col-xs-8">Value</th>
                             <th class="col-xs-1">Preset Fuzz</th>
                             <th class="col-xs-1">Action</th>
                         </tr>
-                    </thead>
+                    </thead>-->
                     <tbody>
                         <tr ng-repeat="param in paramList track by $index">
-                            <td><input type="text" ng-model="param.key" class="underlined" placeholder="Query Parameter" /></td>
-                            <td>
+                            <td class="col-xs-2"><input type="text" ng-model="param.key" class="underlined" placeholder="Query Parameter" /></td>
+                            <td class="col-xs-8">
                                 <textarea ng-model="param.value" rows="1" class="underlined" placeholder="Value" />
                                 <!-- Can probably remove expanded now that using modal -->
                                 <div class="rowExpanded" ng-if="param.expanded">
@@ -84,11 +84,12 @@
                                     <a ng-click="param.expanded = false">Hide</a>
                                 </div>
                             </td>
-                            <td>
-                                <!--<a ng-click="param.expanded = true" >Insert Data</a>-->
+                            <td class="col-xs-1">
                                 <a ng-click="showAModal(this)" >Insert Attack</a>
+                                <br />
+                                <a ng-click="param.expanded = true" >See More</a>
                             </td>
-                            <td>
+                            <td class="col-xs-1">
                                 <a ng-click="removeItem(paramList, $index)">Remove</a>
                             </td>
                         </tr>
@@ -176,9 +177,9 @@
                             <label for="delay">Delay: </label>
                             <input id="delay" type="number" class="form-control" step="1000" ng-model="delay" />
                         </div>
-                        <button type="button" class="btn btn-primary" ng-click="startFuzzing(delay)">Start Fuzzing</button>
+                        <button ng-disabled="urlBatch.length == 0" type="button" class="btn btn-primary" ng-click="startFuzzing(delay)">Start Fuzzing</button>
                         <div class="pull-right">
-                            <button type="button" class="btn btn-danger" ng-click="emptyBatch()">Empty Batch</button>
+                            <button ng-disabled="urlBatch.length == 0" type="button" class="btn btn-danger" ng-click="emptyBatch()">Empty Batch</button>
                         </div>
                     </form>
                 </div>

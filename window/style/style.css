@@ -67,6 +67,9 @@ body {
 .navbar-inverse .navbar-nav > li > a {
   color: white; }
 
+.table > tbody > tr > td {
+  border-top: 0px; }
+
 .modal-dialog {
   width: 1000px;
   margin: 30px auto; }
