@@ -4,6 +4,10 @@
         <div class="panel panel-default panel-top">
             <div class="panel-heading">Batch Results</div>
             <div class="panel-body">
+                <div class="btn-toolbar" role="toolbar">
+                    <button ng-disabled="requestList.length == 0" type="button" class="btn btn-default" ng-click="retryBatch(requestList)">Retry Batch</button>
+                    <button type="button" class="btn btn-danger" ng-click="stop()">STOP</button>
+                </div>
                 <table class="table">
                     <thead>
                         <tr>
@@ -26,10 +30,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="btn-toolbar" role="toolbar">
-                    <button ng-disabled="requestList.length == 0" type="button" class="btn btn-default" ng-click="retryBatch(requestList)">Retry Batch</button>
-                    <button type="button" class="btn btn-danger" ng-click="stop()">STOP</button>
-                </div>
             </div>
         </div>
     </section>

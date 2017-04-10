@@ -54,26 +54,14 @@ app.controller('mainController',
             aceEditor.setValue(JSON.stringify(jObj));
             
         }else if(bodyType === "XML"){
-            //Parse xml into object 
+            //Parse xml into object
+            let parser = new DOMParser();
+            xmlDoc = parser.parseFromString(requestBody, "text/xml");
+            nodes = xmlDoc.documentElement.childNodes;
             //Replace values with junk
             //convert back and display
             
         }
-    };
-
-    $scope.startFuzzing = function (delay) {
-        resultsCache.setNewDataFlag(true);
-        urlList.setDelay(delay);
-        $location.path("requests");
-    };
-
-    $scope.viewResults = function (){
-        resultsCache.setNewDataFlag(false);
-        $location.path("requests");
-    };
-
-    $scope.viewHistory = function (){
-        $location.path("history");
     };
 
     $scope.getParamsFromUrl = function (urlString, pList) {    
@@ -170,19 +158,6 @@ app.controller('mainController',
         urlList.setURLs($scope.urlBatch);
     };
 
-    $scope.addParameter = function (inputParams) {
-        inputParams.push({});
-    };
-
-    $scope.removeItem = function (array, index) {
-        array.splice(index, 1);
-    };
-
-    $scope.emptyBatch = function(){
-        $scope.urlBatch = [];
-        urlList.setURLs($scope.urlBatch);
-    };
-
     $scope.showAModal = function(scope) {
         console.log(scope);
         ModalService.showModal({
@@ -216,6 +191,35 @@ app.controller('mainController',
     $scope.fillHeader = function(newValue, header){
         header.key = newValue;
         header.vis = false;
+    };
+
+    //Might not need to redirect using $location since no longer using chrome app
+    $scope.startFuzzing = function (delay) {
+        resultsCache.setNewDataFlag(true);
+        urlList.setDelay(delay);
+        $location.path("requests");
+    };
+
+    $scope.viewResults = function (){
+        resultsCache.setNewDataFlag(false);
+        $location.path("requests");
+    };
+
+    $scope.viewHistory = function (){
+        $location.path("history");
+    };
+
+    $scope.addParameter = function (inputParams) {
+        inputParams.push({});
+    };
+
+    $scope.removeItem = function (array, index) {
+        array.splice(index, 1);
+    };
+
+    $scope.emptyBatch = function(){
+        $scope.urlBatch = [];
+        urlList.setURLs($scope.urlBatch);
     };
 
 }]);
