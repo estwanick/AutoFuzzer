@@ -198,6 +198,12 @@ app.controller('mainController',
 
   $scope.onHeaderSelected = function(value){
         let output = [];
+
+        if(value.header.key.length <= 0){
+            value.header.filterHeaders = output;
+            return;
+        }
+
         angular.forEach($scope.headers, function(header){
             if(header.toLowerCase().indexOf(value.header.key.toLowerCase()) >= 0){
                 output.push(header);
