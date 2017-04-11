@@ -45,6 +45,18 @@
         <div class="panel panel-default panel-top">
             <div class="panel-heading">Response</div>
             <div class="panel-body">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Response Type:</label>
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <input type="text" class="underlined" ng-model="contentType" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
                 <div ng-model="response" ui-ace="{mode: 'text', useWrapMode : true}" ng-readonly="true"></div>
             </div>
         </div>

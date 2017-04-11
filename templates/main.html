@@ -26,19 +26,10 @@
             <div class="panel-heading">Headers</div>
             <div class="panel-body">
                 <table class="table">
-                    <!--<thead>
-                        <tr>
-                            <th class="col-xs-2">Name</th>
-                            <th class="col-xs-8">Value</th>
-                            <th class="col-xs-1">Action</th>
-                        </tr>
-                    </thead>-->
                     <tbody>
                         <tr ng-repeat="header in headerList track by $index">
                             <td class="col-xs-2">
-                                <input type="text" class="underlined" ng-model="header.key" placeholder="Key" ng-keyup="onHeaderSelected(this)"/>
-                                <!-- What to do about vis?-->
-                                
+                                <input type="text" class="underlined" ng-model="header.key" placeholder="Key" ng-keyup="onHeaderSelected(this)"/>                                
                                 <ul class="list-group" ng-if="header.vis">
                                     <li class="list-group-item"
                                     ng-repeat="headerText in header.filterHeaders" ng-click="fillHeader(headerText,header)">{{ headerText }}</li>
@@ -65,14 +56,6 @@
             <div class="panel-heading">Query Parameters</div>
             <div class="panel-body">
                 <table class="table">
-                    <!--<thead>
-                        <tr>
-                            <th class="col-xs-2">Parameter</th>
-                            <th class="col-xs-8">Value</th>
-                            <th class="col-xs-1">Preset Fuzz</th>
-                            <th class="col-xs-1">Action</th>
-                        </tr>
-                    </thead>-->
                     <tbody>
                         <tr ng-repeat="param in paramList track by $index">
                             <td class="col-xs-2"><input type="text" ng-model="param.key" class="underlined" placeholder="Query Parameter" /></td>
@@ -102,7 +85,7 @@
                         <button type="button" class="btn btn-default" ng-click="randomizeValues(paramList)">Random Data</button>
                     </div>
                     <div class="pull-right">
-                        <button type="button" class="btn btn-primary" ng-click="addRequest(urlInput, paramList, method, headerList)">Add to Batch</button>
+                        <button type="button" class="btn btn-primary" ng-click="addRequest(urlInput, paramList, method, headerList, requestBody)">Add to Batch</button>
                     </div>
                 </div>
             </div>

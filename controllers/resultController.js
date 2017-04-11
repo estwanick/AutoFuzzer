@@ -13,6 +13,8 @@ app.controller('resultController',
     $scope.url = requestResult.getURL();
     $scope.method = requestResult.getMethod();
     $scope.body = requestResult.getBody(); //Should know the type of the body
-    $scope.response = getContentType(requestResult.getResponse(), requestResult.getContentType());
+    let cType = requestResult.getContentType();
+    $scope.contentType = cType ;
+    $scope.response = getContentType(requestResult.getResponse(), cType);
     $scope.headers = requestResult.getHeaders();
 }]);
