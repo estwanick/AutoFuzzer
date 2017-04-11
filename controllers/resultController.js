@@ -14,7 +14,7 @@ app.controller('resultController',
     $scope.method = requestResult.getMethod();
     $scope.body = requestResult.getBody(); //Should know the type of the body
     let cType = requestResult.getContentType();
-    $scope.contentType = cType ;
+    $scope.contentType = cType;
     $scope.response = getContentType(requestResult.getResponse(), cType);
     $scope.headers = requestResult.getHeaders();
 }]);

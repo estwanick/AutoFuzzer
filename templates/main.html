@@ -68,9 +68,9 @@
                                 </div>
                             </td>
                             <td class="col-xs-1">
-                                <a ng-click="showAModal(this)" >Insert Attack</a>
+                                <a ng-click="showAModal(this)">Insert Attack</a>
                                 <br />
-                                <a ng-click="param.expanded = true" >See More</a>
+                                <a ng-click="param.expanded = true">See More</a>
                             </td>
                             <td class="col-xs-1">
                                 <a ng-click="removeItem(paramList, $index)">Remove</a>
@@ -98,9 +98,9 @@
             <div class="panel-body">
                 <div class="btn-toolbar" role="toolbar">
                     <div class="pull-left">
-                        <button type="button" class="btn btn-default" ng-click="setEditor('RAW')">RAW</button>
-                        <button type="button" class="btn btn-default" ng-click="setEditor('XML')">XML</button>
-                        <button type="button" class="btn btn-default" ng-click="setEditor('JSON')">JSON</button>
+                        <button type="button" ng-class="bodyType == 'RAW' ? 'btn btn-primary' : 'btn btn-default'" ng-click="setEditor('RAW')">RAW</button>
+                        <button type="button" ng-class="bodyType == 'XML' ? 'btn btn-primary' : 'btn btn-default'" ng-click="setEditor('XML')">XML</button>
+                        <button type="button" ng-class="bodyType == 'JSON' ? 'btn btn-primary' : 'btn btn-default'" ng-click="setEditor('JSON')">JSON</button>
                     </div>
                     <div class="pull-right">
                         <button type="button" class="btn btn-primary">Import</button>

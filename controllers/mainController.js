@@ -6,7 +6,7 @@ app.controller('mainController',
     $scope.urlBatch = urlList.getURLs();
     $scope.method = appConstants.getDefaultMethod();
     $scope.methods = appConstants.getMethods();
-    $scope.bodyType = "XML";
+    $scope.bodyType = "RAW";
     $scope.sqlInjectionOptions = appConstants.getSqlInjection();
     $scope.xssOptions = appConstants.getXss();
     $scope.paramList = [{}];
@@ -17,31 +17,30 @@ app.controller('mainController',
     $scope.headers = appConstants.getHeaders();
 
     let aceEditor;
-    let bodyType;
     $scope.aceLoaded = function(_editor) {
         aceEditor = _editor.getSession();
-        aceEditor.setMode("ace/mode/xml");
+        aceEditor.setMode("ace/mode/text");
     };
 
     $scope.setEditor = function(mode){
         if(mode === 'XML'){
-            bodyType = "XML";
+            $scope.bodyType = "XML";
             aceEditor.setMode('ace/mode/xml');
         }else if(mode === 'JSON'){
-            bodyType = "JSON";
+            $scope.bodyType = "JSON";
             aceEditor.setMode('ace/mode/json');
         }else{
-            bodyType = "RAW";
+            $scope.bodyType = "RAW";
             aceEditor.setMode('ace/mode/text');
         }
     };
 
     $scope.randomizeBody = function(){
-        //TODO: Pass bodyType to this function instead of it being global
+        //TODO: Pass $scope.bodyType to this function instead of it being global
         //Read XML or JSON body and insert randomized fuzz into each field value
         let requestBody = aceEditor.getValue();
-        console.log(bodyType + ":" + requestBody);
-        if(bodyType === "JSON"){
+        console.log($scope.bodyType + ":" + requestBody);
+        if($scope.bodyType === "JSON"){
             //Convert to json
             let jObj = JSON.parse(requestBody);
             //Replace values with junk
@@ -53,7 +52,7 @@ app.controller('mainController',
             //convert back and display
             aceEditor.setValue(JSON.stringify(jObj));
             
-        }else if(bodyType === "XML"){
+        }else if($scope.bodyType === "XML"){
             //Parse xml into object
             let parser = new DOMParser();
             xmlDoc = parser.parseFromString(requestBody, "text/xml");
