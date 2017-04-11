@@ -2,6 +2,7 @@ $primary-color: #2574A9;
 $secondary-color: #22313F;
 $body-grey: rgb(251, 251, 251);
 $med-grey: #555;
+$rand-grey: #6c7f8a;
 
 html {
   overflow-y:scroll;
@@ -40,6 +41,23 @@ body{
 .btn-toolbar {
     padding: 5px;
 }
+.btn-warning{
+  background-color: $rand-grey;
+  border-color: $rand-grey;
+  &:hover {
+        background-color: $rand-grey;
+        border-color: $rand-grey;
+  }
+  &:focus{
+        background-color: $rand-grey;
+        border-color: $rand-grey;
+  }
+  &:hover:active{
+        background-color: $rand-grey;
+        border-color: $rand-grey;
+  }
+}
+
 
 .panel-default>.panel-heading{
   color: white;

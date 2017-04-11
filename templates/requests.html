@@ -4,32 +4,37 @@
         <div class="panel panel-default panel-top">
             <div class="panel-heading">Batch Results</div>
             <div class="panel-body">
+                <div class="container" ng-if="requestList.length <= 0">
+                    <h4>You have not started any batch requests, <a href="#">return home</a> to begin.</h4>      
+                </div>
+                <section ng-if="requestList.length > 0">
                 <div class="btn-toolbar" role="toolbar">
                     <button ng-disabled="requestList.length == 0" type="button" class="btn btn-default" ng-click="retryBatch(requestList)">Retry Batch</button>
                     <button type="button" class="btn btn-danger" ng-click="stop()">STOP</button>
                 </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="col-xs-1">Method</th>
-                            <th class="col-xs-5">Request URL</th>
-                            <th class="col-xs-2">Data</th>
-                            <th class="col-xs-1">Status</th>
-                            <th class="col-xs-2">Text</th>
-                            <th class="col-xs-1">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="request in requestList track by $index">
-                            <td>{{ request.method }}</td>
-                            <td>{{ request.url }}</td>
-                            <td><a ng-click="viewResult(request)">{{ request.data }}</a></td>
-                            <td>{{ request.status }}</td>
-                            <td>{{ request.text }}</td>
-                            <td><a ng-click="viewResult(request)">See more</a></td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="col-xs-1">Method</th>
+                                <th class="col-xs-5">Request URL</th>
+                                <th class="col-xs-2">Data</th>
+                                <th class="col-xs-1">Status</th>
+                                <th class="col-xs-2">Text</th>
+                                <th class="col-xs-1">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="request in requestList track by $index">
+                                <td>{{ request.method }}</td>
+                                <td>{{ request.url }}</td>
+                                <td><a ng-click="viewResult(request)">{{ request.data }}</a></td>
+                                <td>{{ request.status }}</td>
+                                <td>{{ request.text }}</td>
+                                <td><a ng-click="viewResult(request)">See more</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
             </div>
         </div>
     </section>

@@ -27,6 +27,19 @@ body {
 .btn-toolbar {
   padding: 5px; }
 
+.btn-warning {
+  background-color: #6c7f8a;
+  border-color: #6c7f8a; }
+  .btn-warning:hover {
+    background-color: #6c7f8a;
+    border-color: #6c7f8a; }
+  .btn-warning:focus {
+    background-color: #6c7f8a;
+    border-color: #6c7f8a; }
+  .btn-warning:hover:active {
+    background-color: #6c7f8a;
+    border-color: #6c7f8a; }
+
 .panel-default > .panel-heading {
   color: white;
   background-color: #2574A9; }

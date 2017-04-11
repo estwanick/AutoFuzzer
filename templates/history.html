@@ -5,33 +5,38 @@
         <div class="panel panel-default panel-top">
             <div class="panel-heading">History</div>
             <div class="panel-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="col-xs-1">Method</th>
-                            <th class="col-xs-5">Request URL</th>
-                            <th class="col-xs-2">Data</th>
-                            <th class="col-xs-1">Status</th>
-                            <th class="col-xs-2">Text</th>
-                            <th class="col-xs-1">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="request in historyList track by $index">
-                            <td>{{ request.method }}</td>
-                            <td>{{ request.url }}</td>
-                            <td><a ng-click="viewResult(request)">{{ request.data }}</a></td>
-                            <td>{{ request.status }}</td>
-                            <td>{{ request.text }}</td>
-                            <td><a>See more</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="btn-toolbar" role="toolbar">
-                    <button type="button" class="btn btn-danger" ng-click="clearHistory()">Clear</button>
-                    <button type="button" class="btn btn-primary" ng-click="showMore(historyList.length)">Show More</button>
+                <div class="container" ng-if="historyList.length <= 0">
+                    <h4>You have not yet made any requests.</h4>      
                 </div>
-            </div>
+                <section ng-if="historyList.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="col-xs-1">Method</th>
+                                <th class="col-xs-5">Request URL</th>
+                                <th class="col-xs-2">Data</th>
+                                <th class="col-xs-1">Status</th>
+                                <th class="col-xs-2">Text</th>
+                                <th class="col-xs-1">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="request in historyList track by $index">
+                                <td>{{ request.method }}</td>
+                                <td>{{ request.url }}</td>
+                                <td><a ng-click="viewResult(request)">{{ request.data }}</a></td>
+                                <td>{{ request.status }}</td>
+                                <td>{{ request.text }}</td>
+                                <td><a>See more</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="btn-toolbar" role="toolbar">
+                        <button type="button" class="btn btn-danger" ng-click="clearHistory()">Clear</button>
+                        <button type="button" class="btn btn-primary" ng-click="showMore(historyList.length)">Show More</button>
+                    </div>
+                </div>
+            </section>
         </div>
     </section>
 </div>
