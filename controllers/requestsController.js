@@ -34,7 +34,7 @@ app.controller('requestsController',
             }, function (response) {
                 onRequestComplete(response, counter);
             });//check (catch) for chrome DOS
-        }, reqDelay);
+        }, counter  === 0 ? 0 : reqDelay);
     }
 
     let errDelay = delay;
