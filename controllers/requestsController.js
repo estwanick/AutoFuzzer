@@ -96,4 +96,8 @@ app.controller('requestsController',
         $location.path(path);
     };
 
+    $scope.clearBatch = function(results){
+        $scope.requestList = [];
+    };
+
 }]);

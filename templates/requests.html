@@ -3,15 +3,20 @@
     <section>
         <div class="panel panel-default panel-top">
             <div class="panel-heading">Batch Results</div>
-            <div class="panel-body">
+            <div class="panel-body">   
+                <div class="btn-toolbar" role="toolbar">
+                    <div class="pull-left">
+                        <button ng-disabled="requestList.length == 0" type="button" class="btn btn-default" ng-click="retryBatch(requestList)">Retry Batch</button>
+                        <button ng-disabled="requestList.length == 0" type="button" class="btn btn-danger" ng-click="stop()">STOP</button>
+                    </div>
+                    <div class="pull-right">
+                        <button  ng-disabled="requestList.length == 0" type="button" class="btn btn-danger" ng-click="clearBatch(requestList)">Clear</button>
+                    </div>
+                </div>
                 <div class="container" ng-if="requestList.length <= 0">
                     <h4>You have not started any batch requests, <a href="#">return home</a> to begin.</h4>      
                 </div>
                 <section ng-if="requestList.length > 0">
-                <div class="btn-toolbar" role="toolbar">
-                    <button ng-disabled="requestList.length == 0" type="button" class="btn btn-default" ng-click="retryBatch(requestList)">Retry Batch</button>
-                    <button type="button" class="btn btn-danger" ng-click="stop()">STOP</button>
-                </div>
                     <table class="table">
                         <thead>
                             <tr>
