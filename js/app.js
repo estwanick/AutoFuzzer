@@ -1,1 +1,1 @@
-let app = angular.module('autoFuzzer', ["ngRoute","ui.ace", "angularModalService"]);
+let app = angular.module('autoFuzzer', ["ngRoute", "ngSanitize","ui.ace", "angularModalService"]);

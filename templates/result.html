@@ -61,4 +61,13 @@
             </div>
         </div>
     </section>
+
+    <section ng-if="html">
+        <div class="panel panel-default panel-top">
+            <div class="panel-heading">iFrame Response</div>
+            <div class="panel-body">
+                <iframe class="center-block iframe" srcdoc={{html}}></iframe>
+            </div>
+        </div>
+    </section>
 </div>

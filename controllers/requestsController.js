@@ -1,5 +1,5 @@
 app.controller('requestsController', 
-    ['$scope','$http','$location','$timeout','urlList','requestResult','resultsCache','requestHistory',
+    ['$scope','$http','$location','$timeout','urlList','requestResult','resultsCache','requestHistory', 
     function ($scope, $http, $location, $timeout,
     urlList, requestResult, resultsCache, requestHistory) {
     
