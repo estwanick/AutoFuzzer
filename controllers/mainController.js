@@ -220,5 +220,4 @@ app.controller('mainController',
         $scope.urlBatch = [];
         urlList.setURLs($scope.urlBatch);
     };
-
 }]);

@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-md-11">
                         <label>URL:</label>
-                        <input type="text" class="underlined" placeholder="URL to Fuzz" ng-model="urlInput" ng-change="getParamsFromUrl(urlInput)"/>
+                        <input type="text" class="underlined" placeholder="URL to Fuzz" ng-model="urlInput" ng-change="getParamsFromUrl(urlInput, paramList)"/>
                     </div>
                 </div>
             </div>
@@ -101,9 +101,6 @@
                         <button type="button" ng-class="bodyType == 'RAW' ? 'btn btn-primary' : 'btn btn-default'" ng-click="setEditor('RAW')">RAW</button>
                         <button type="button" ng-class="bodyType == 'XML' ? 'btn btn-primary' : 'btn btn-default'" ng-click="setEditor('XML')">XML</button>
                         <button type="button" ng-class="bodyType == 'JSON' ? 'btn btn-primary' : 'btn btn-default'" ng-click="setEditor('JSON')">JSON</button>
-                    </div>
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-primary">Import</button>
                     </div>
                 </div>
                 <div id="bodyEditor" ng-model="requestBody" ui-ace="{onLoad: aceLoaded}"></div>
