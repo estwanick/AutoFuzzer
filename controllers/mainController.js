@@ -14,7 +14,7 @@ app.controller('mainController',
     $scope.sqlInjectionOptions = appConstants.getSqlInjection();
     $scope.xssOptions = appConstants.getXss();
     const allAttacks = appConstants.getAllAttacks();
-    const pLength = allAttacks.length;
+    const attackCount = allAttacks.length;
     
 
     let aceEditor;
@@ -40,13 +40,18 @@ app.controller('mainController',
         //TODO: Pass $scope.bodyType to this function instead of it being global
         //Read XML or JSON body and insert randomized fuzz into each field value
         let requestBody = aceEditor.getValue();
-        console.log($scope.bodyType + ":" + requestBody);
-        if($scope.bodyType === "JSON"){
+        //console.log($scope.bodyType + ":" + requestBody);
+        if($scope.bodyType === "JSON"){ //catch valid json error
             //Convert to json
-            let jObj = JSON.parse(requestBody);
+            try{
+                let jObj = JSON.parse(requestBody);
+            }catch (e){
+                alert("Please enter valid JSON.");
+            }
+            
             //Replace values with junk
             for(let key in jObj){
-                var attackValue = allAttacks[Math.floor((Math.random() * pLength))];
+                var attackValue = allAttacks[Math.floor((Math.random() * attackCount))];
                 jObj[key] = attackValue.value;
                 //Add option to traverse entire object
             }
@@ -60,7 +65,18 @@ app.controller('mainController',
             nodes = xmlDoc.documentElement.childNodes;
             //Replace values with junk
             //convert back and display
+            let randomString = "";
+            for(let i = 0; i < 10; i++){
+                randomString = randomString + allAttacks[Math.floor((Math.random() * attackCount))].value;
+            }
+            aceEditor.setValue(randomString);
             
+        }else{
+            let randomString = "";
+            for(let i = 0; i < 10; i++){
+                randomString = randomString + allAttacks[Math.floor((Math.random() * attackCount))].value;
+            }
+            aceEditor.setValue(randomString);
         }
     };
 
@@ -98,7 +114,7 @@ app.controller('mainController',
     $scope.randomizeValues = function(paramsList){
         paramsList.forEach(
             function(param){
-                let attackValue = allAttacks[Math.floor((Math.random() * pLength))];
+                let attackValue = allAttacks[Math.floor((Math.random() * attackCount))];
                 param.value = attackValue.value;
             }
         );
@@ -159,7 +175,6 @@ app.controller('mainController',
     };
 
     $scope.showAModal = function(scope) {
-        console.log(scope);
         ModalService.showModal({
             templateUrl: "./templates/attackModal.html",
             controller: "modalController"

@@ -83,7 +83,7 @@
                         <button type="button" class="btn btn-warning" ng-click="randomizeValues(paramList)">Random Data</button>
                     </div>
                     <div class="pull-right">
-                        <button type="button" class="btn btn-primary" ng-click="addRequest(urlInput, paramList, method, headerList, requestBody)">Add to Batch</button>
+                        <button type="button" ng-disabled="urlInput.length == 0" class="btn btn-primary" ng-click="addRequest(urlInput, paramList, method, headerList, requestBody)">Add to Batch</button>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                         <button type="button" class="btn btn-warning" ng-click="randomizeBody()">Randomize Data</button>
                     </div>
                     <div class="pull-right">
-                        <button type="button" class="btn btn-primary" ng-click="addRequest(urlInput, paramList, method, headerList, requestBody)">Add to Batch</button>
+                        <button type="button" class="btn btn-primary" ng-disabled="urlInput.length == 0" ng-click="addRequest(urlInput, paramList, method, headerList, requestBody)">Add to Batch</button>
                     </div>
                 </div>
             </div>
