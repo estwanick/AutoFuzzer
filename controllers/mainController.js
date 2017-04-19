@@ -1,20 +1,21 @@
 app.controller('mainController', 
     ['$scope', '$location', 'ModalService', 'urlList', 'resultsCache', 'appConstants',
     function ($scope, $location, ModalService, urlList, resultsCache, appConstants) {
+    let originalURL = "";
     $scope.delay = 1000;
     $scope.urlInput = "http://services.odata.org/Northwind/Northwind.svc/?$format=json";
     $scope.urlBatch = urlList.getURLs();
     $scope.method = appConstants.getDefaultMethod();
     $scope.methods = appConstants.getMethods();
-    $scope.bodyType = "RAW";
-    $scope.sqlInjectionOptions = appConstants.getSqlInjection();
-    $scope.xssOptions = appConstants.getXss();
+    $scope.bodyType = "RAW";  
     $scope.paramList = [{}];
     $scope.headerList = [{}];
-    let originalURL = ""; //change this
-    const allAttacks = $scope.sqlInjectionOptions.concat($scope.xssOptions);
-    const pLength = allAttacks.length;
     $scope.headers = appConstants.getHeaders();
+    $scope.sqlInjectionOptions = appConstants.getSqlInjection();
+    $scope.xssOptions = appConstants.getXss();
+    const allAttacks = appConstants.getAllAttacks();
+    const pLength = allAttacks.length;
+    
 
     let aceEditor;
     $scope.aceLoaded = function(_editor) {

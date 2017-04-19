@@ -125,6 +125,87 @@ app.service('appConstants', function() {
         "X-Correlation-ID"
     ];
 
+    const numberValues = [
+        {
+            "name": "Number 1",
+            "value": `-32,767`
+        },
+        {
+            "name": "Number 2",
+            "value": `32,767`
+        },
+        {
+            "name": "Number 3",
+            "value": `-2,147,483,647`
+        },
+        {
+            "name": "Number 4",
+            "value": `2,147,483,647`
+        },
+        {
+            "name": "Number 5",
+            "value": `-9,223,372,036,854,775,807`
+        },
+        {
+            "name": "Number 6",
+            "value": `9,223,372,036,854,775,807`
+        },
+        {
+            "name": "Number 7",
+            "value": `-1.797,693,134,862,315,7`
+        },
+        {
+            "name": "Number 8",
+            "value": `1.797,693,134,862,315,7`
+        }
+    ];
+
+    const stringValues = [
+        {
+            "name": "String 1",
+            "value": `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`
+        },
+        {
+            "name": "String 2",
+            "value": `'공', '人', '🔴'`
+        },
+        {
+            "name": "String 3",
+            "value": `c3aac2b3c2b5`
+        },
+        {
+            "name": "String 4",
+            "value": `En Espa\u00f1ol`
+        },
+        {
+            "name": "String 5",
+            "value": `100 1100	114	76	4C`
+        }
+    ];
+
+    const dateValues = [
+        {
+            "name": "Date 1",
+            "value": `23-10-2016`
+        },
+        {
+            "name": "Date 2",
+            "value": `0030-04-08`
+        },
+        {
+            "name": "Date 3",
+            "value": `2014-02-16T00:17:20.000Z`
+        },
+        {
+            "name": "Date 4",
+            "value": `2014-32-66T00:.000Z`
+        },
+        {
+            "name": "Date 5",
+            "value": `2016-09-06T08:35:02.530GMT`
+        }
+    ];
+
     this.getMethods = function() {
         return methods;
     };
@@ -141,6 +222,18 @@ app.service('appConstants', function() {
         return sqlInjection;
     };
 
+    this.getNumbers = function() {
+        return numberValues;
+    };
+
+    this.getStrings = function() {
+        return stringValues;
+    };
+    
+    this.getDates = function() {
+        return dateValues;
+    };
+
     this.getXss = function() {
         return xss;
     };
@@ -150,6 +243,6 @@ app.service('appConstants', function() {
     };
 
     this.getAllAttacks = function(){
-        return sqlInjection.concat(xss).concat(custom);
+        return sqlInjection.concat(xss).concat(custom).concat(dateValues).concat(numberValues).concat(stringValues);
     };
 });

@@ -3,37 +3,37 @@
         <div class="form-group">
             <label class="col-md-4 control-label">Numbers</label>
             <div class="col-md-4">
-                <select class="form-control" ng-model="sqlText">
-                    <option ng-repeat="injectText in sqlInjectionOptions" value="{{injectText}}">
-                        {{injectText}}   
+                <select class="form-control" ng-model="numberVal">
+                    <option ng-repeat="injectText in numberValues" value="{{injectText.value}}">
+                        {{injectText.value}}   
                     </option>
                 </select>
             </div>
-            <button type="button" class="btn btn-default" ng-click="setAttack(field, sqlText)">Add</button>
+            <button type="button" class="btn btn-default" ng-click="setAttack(field, numberVal)">Add</button>
         </div>
 
         <div class="form-group">
             <label class="col-md-4 control-label">Strings</label>
             <div class="col-md-4">
-                <select class="form-control" ng-model="xssText">
-                    <option ng-repeat="injectText in xssOptions" value="{{injectText}}">
-                        {{injectText}}   
+                <select class="form-control" ng-model="stringVal">
+                    <option ng-repeat="injectText in stringValues" value="{{injectText.value}}">
+                        {{injectText.value}}   
                     </option>
                 </select>
             </div>
-            <button type="button" class="btn btn-default" ng-click="setAttack(field, xssText)">Add</button>
+            <button type="button" class="btn btn-default" ng-click="setAttack(field, stringVal)">Add</button>
         </div>
 
         <div class="form-group">
             <label class="col-md-4 control-label">Dates</label>
             <div class="col-md-4">
-                <select class="form-control" ng-model="xssText">
-                    <option ng-repeat="injectText in xssOptions" value="{{injectText}}">
-                        {{injectText}}   
+                <select class="form-control" ng-model="dateVal">
+                    <option ng-repeat="injectText in dateValues" value="{{injectText.value}}">
+                        {{injectText.value}}   
                     </option>
                 </select>
             </div>
-            <button type="button" class="btn btn-default" ng-click="setAttack(field, xssText)">Add</button>
+            <button type="button" class="btn btn-default" ng-click="setAttack(field, dateVal)">Add</button>
         </div>
 
     </fieldset>

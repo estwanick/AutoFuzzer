@@ -61,16 +61,14 @@
                             <td class="col-xs-2"><input type="text" ng-model="param.key" class="underlined" placeholder="Query Parameter" /></td>
                             <td class="col-xs-8">
                                 <textarea ng-model="param.value" rows="1" class="underlined" placeholder="Value" />
-                                <!-- Can probably remove expanded now that using modal -->
+                                <a class="pull-right" ng-click="param.expanded = true">See More</a>
                                 <div class="rowExpanded" ng-if="param.expanded">
                                     <attack-selector field="param.value"></attack-selector>
                                     <a ng-click="param.expanded = false">Hide</a>
                                 </div>
                             </td>
                             <td class="col-xs-1">
-                                <a ng-click="showAModal(this)">Insert Attack</a>
-                                <br />
-                                <a ng-click="param.expanded = true">See More</a>
+                                <a ng-click="showAModal(this)">Attacks</a>
                             </td>
                             <td class="col-xs-1">
                                 <a ng-click="removeItem(paramList, $index)">Remove</a>

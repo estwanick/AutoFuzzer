@@ -6,10 +6,10 @@ app.directive("attackSelector", function(appConstants) {
             field: "="
         },
         link: function (scope) {
-            scope.sqlInjectionOptions = appConstants.getSqlInjection();
-            scope.xssOptions = appConstants.getXss();
+            scope.numberValues = appConstants.getNumbers();
+            scope.stringValues = appConstants.getStrings();
+            scope.dateValues = appConstants.getDates();
             scope.setAttack = function (field, value) {
-                console.log(field + ":" + value);
                 scope.field = value;
             };
         }
