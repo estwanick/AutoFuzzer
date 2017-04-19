@@ -58,8 +58,20 @@ app.service('appConstants', function() {
 
     const custom = [
         {
-            "name": "Mike's Special",
-            "value": `super good attack!`
+            "name": "Mike's Special 1",
+            "value": `-->!<script src="alert('code')"<!--`
+        },
+        {
+            "name": "Mike's Special 2",
+            "value": `;1=1; and select * from users where 1=1`
+        },
+        {
+            "name": "Mike's Special 3",
+            "value": `<script><!<>>>><<<!!!.js console.log()`
+        },
+        {
+            "name": "Mike's Special 4",
+            "value": `><div><script>alert();alert();</script></div>`
         }
     ];
 
